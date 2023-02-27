@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="Convolution.h" />
     <ClInclude Include="Deconvolution.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="NeuralNetwork.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
