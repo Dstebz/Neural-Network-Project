@@ -32,7 +32,7 @@ public:
 
 
 	//methods
-	void Run();
+	void Run(); //Run(Input)
 	L_Parameters getParameters(); //should be able to initialise with any Parameter type? change in parent>
 	void setParameters(DC_Parameters); 
 	
