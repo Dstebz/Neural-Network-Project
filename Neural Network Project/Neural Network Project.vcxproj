@@ -128,12 +128,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="NeuralNetwork.cpp" />
+    <ClCompile Include="ReLU.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Convolution.h" />
     <ClInclude Include="Deconvolution.h" />
+    <ClInclude Include="FullyConnected.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="NeuralNetwork.h" />
+    <ClInclude Include="Pooling.h" />
+    <ClInclude Include="ReLU.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

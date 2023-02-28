@@ -16,9 +16,15 @@
     <Filter Include="Header Files\Layer">
       <UniqueIdentifier>{f80ee02a-d3e0-4f17-bee7-fc233012ae2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Activation Function">
+      <UniqueIdentifier>{048bf797-ac1d-429f-a3d9-e0c5c85132d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NeuralNetwork.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReLU.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -34,6 +40,15 @@
     </ClInclude>
     <ClInclude Include="Layer.h">
       <Filter>Header Files\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Pooling.h">
+      <Filter>Header Files\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="FullyConnected.h">
+      <Filter>Header Files\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="ReLU.h">
+      <Filter>Header Files\Activation Function</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

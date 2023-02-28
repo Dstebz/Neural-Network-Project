@@ -4,6 +4,8 @@
 
 #include "Deconvolution.h"
 #include "Convolution.h"
+#include "Pooling.h"
+#include "FullyConnected.h"
 
 
 class Layer { //interface class
