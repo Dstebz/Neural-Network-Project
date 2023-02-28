@@ -2,18 +2,27 @@
 
 #include <string>
 
+#include "Deconvolution.h"
+#include "Convolution.h"
+
+
 class Layer { //interface class
 
 protected:
-	virtual struct Parameters {};
+	union L_Parameters {
+		DeconvolutionLayer::DC_Parameters deconvolution;
+		//ConvolutionLayer::C_Parameters convolution;
+	};
 public:
+	//constructors
 	Layer();
-	Layer(Parameters);
+	Layer(L_Parameters);
+	//destructor
 	~Layer();
 	
 	virtual void Run(); //return matrix / image?
-	virtual Parameters getParameters();
-	virtual void setParameters(Parameters); 
+	virtual L_Parameters getParameters();
+	virtual void setParameters(L_Parameters); 
 
 };
 
