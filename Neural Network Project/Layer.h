@@ -12,12 +12,7 @@
 class Layer { //interface class
 
 protected:
-	union L_Parameters{
-		DeconvolutionLayer::DC_Parameters;
-		ConvolutionLayer::C_Parameters;
-		PoolingLayer::PL_Parameters;
-		FullyConnectedLayer::FC_Parameters;
-	};
+	std::variant<DeconvolutionLayer::DC_Parameters, ConvolutionLayer::C_Parameters, PoolingLayer::PL_Parameters, FullyConnectedLayer::FC_Parameters> L_Parameters;
 public:
 	//constructors
 	Layer();
