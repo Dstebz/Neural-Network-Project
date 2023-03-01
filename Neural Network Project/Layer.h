@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <variant>
 
 #include "Deconvolution.h"
 #include "Convolution.h"
@@ -11,9 +12,11 @@
 class Layer { //interface class
 
 protected:
-	union L_Parameters {
-		DeconvolutionLayer::DC_Parameters deconvolution;
-		//ConvolutionLayer::C_Parameters convolution;
+	union L_Parameters{
+		DeconvolutionLayer::DC_Parameters;
+		ConvolutionLayer::C_Parameters;
+		PoolingLayer::PL_Parameters;
+		FullyConnectedLayer::FC_Parameters;
 	};
 public:
 	//constructors
