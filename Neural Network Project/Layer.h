@@ -16,12 +16,11 @@ protected:
 public:
 	//constructors
 	Layer();
-	Layer(L_Parameters);
 	//destructor
 	~Layer();
 	
 	virtual void Run(); //return matrix / image?
-	virtual L_Parameters getParameters();
+	virtual getParameters();
 	virtual void setParameters(L_Parameters); 
 
 };
