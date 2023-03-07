@@ -23,6 +23,8 @@ public:
 	virtual getParameters();
 	virtual void setParameters(L_Parameters); 
 
+	virtual double activationFunction();
+
 };
 
 Layer::Layer() {

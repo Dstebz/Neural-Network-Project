@@ -1,4 +1,7 @@
 #pragma once
+
+#include "ActivationFunction.h"
+
 class ConvolutionLayer : Layer {
 private:
 	struct C_Parameters_Default {
@@ -29,6 +32,8 @@ public:
 	void Run(); //Run(Input)
 	L_Parameters getParameters(); //should be able to initialise with any Parameter type? change in parent>
 	void setParameters(C_Parameters);
+
+	double activationFunction = ActivationFunction::sigmoid();
 
 
 

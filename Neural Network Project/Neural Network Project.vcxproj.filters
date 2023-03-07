@@ -47,7 +47,7 @@
     <ClInclude Include="FullyConnected.h">
       <Filter>Header Files\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="ReLU.h">
+    <ClInclude Include="ActivationFunction.h">
       <Filter>Header Files\Activation Function</Filter>
     </ClInclude>
   </ItemGroup>
