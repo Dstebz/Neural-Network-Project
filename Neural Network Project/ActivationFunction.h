@@ -10,4 +10,5 @@ public:
 	static double tanh(double ip);
 	static double sigmoid(double ip);	
 	static double softmax(double ip);
+
 };
