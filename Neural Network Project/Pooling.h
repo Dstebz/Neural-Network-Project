@@ -2,27 +2,24 @@
 
 #include "Layer.h"
 
-class PoolingLayer : Layer {
-private:
+class PoolingLayer : Layer {		//pooling layer used to reduce dimension of feature map, reducing number of parameters to learn...
+private:							//max pooling used to capture most dominant aspects of feature map (i.e. will choose largest value in quadrant of matrix)
 	struct PL_Parameters_Default {
-		int stride = 1;				//how much the kernel moves after each cycle
-		int padding = 1;			//padding used to assist the kernel in processing of matrix. A padding of 'n' will add an 'n' thick border of 0's
-		int kernelSize = 3;			//size of 'filter' being used
-		int inputChannels = 1;
-		int outputChannels = 1;		//can't we just put this in the default constructor? Will need to do this in the .cpp file
-
+		int map_width;
+		int map_height;
+		int n_channels;
+		int filter_size;
+		int stride;
 	};
 
 public: 
 	//Pooling Parameters
 	struct PL_Parameters : PL_Parameters_Default {
+		int map_width;
+		int map_height;
+		int n_channels;
+		int filter_size;
 		int stride;
-		int padding;
-		int kernelSize;
-		int inputChannels;
-		int outputChannels;
-
-
 
 	};
 	//Pooling constructors
@@ -33,7 +30,7 @@ public:
 	~PoolingLayer();
 
 	//methods required
-	int getMax(/* matrix of kernel */);			//used to calculate the max pooling value
+	int getMax(/* matrix of kernel, */ int map_width, int map_height, int filter_size, int stride);			//used to calculate the max pooling value
 
 												//also need to use the max values to generate down sized matrix
 
