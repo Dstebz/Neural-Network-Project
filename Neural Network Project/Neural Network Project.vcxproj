@@ -139,7 +139,7 @@
     <ClInclude Include="Layer.h" />
     <ClInclude Include="NeuralNetwork.h" />
     <ClInclude Include="Pooling.h" />
-    <ClInclude Include="ReLU.h" />
+    <ClInclude Include="ActivationFunction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
