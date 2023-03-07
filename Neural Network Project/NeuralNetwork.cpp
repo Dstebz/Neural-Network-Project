@@ -1,4 +1,4 @@
 
 
-class Neuralnetwork()
+//class Neuralnetwork()
 	
