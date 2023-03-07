@@ -130,7 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="NeuralNetwork.cpp" />
-    <ClCompile Include="ReLU.cpp" />
+    <ClCompile Include="ActivationFunction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Convolution.h" />

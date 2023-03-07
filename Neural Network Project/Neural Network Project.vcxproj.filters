@@ -24,7 +24,7 @@
     <ClCompile Include="NeuralNetwork.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReLU.cpp">
+    <ClCompile Include="ActivationFunction.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
