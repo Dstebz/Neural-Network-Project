@@ -8,4 +8,12 @@ Eigen::MatrixXi a{      // construct a 2x2 matrix
 
 int main() {
 	std::cout << a << std::endl;
+
+    std::cout << "testing activation functions: " << std::endl;
+
+    std::cout << "reLU function: " << std::endl;
+    
+
+
 }
+
