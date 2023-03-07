@@ -1,4 +1,4 @@
-#include "ReLU.h"
+#include "ActivationFunction.h"
 #include <vector>
 #include <cmath>
 
@@ -11,6 +11,28 @@ double ActivationFunction::reLU(double ip) {	//compares input with 0. If input, 
 	}
 }
 
-double softmax(std::vector<double> ip) {
+double ActivationFunction::tanh(double ip) {
+	double ans;
 
+	ans = exp(2 * ip) - 1 / exp(2 * ip) + 1;
+
+	return ans;
+}
+
+
+double ActivationFunction::sigmoid(double ip) {
+	double ans;
+
+	ans = 1 / (1 + exp(-ip));
+
+	return ans;
+}
+
+
+double ActivationFunction::softmax(double ip) {
+	double ans;
+
+	ans = exp(ip) / 1 + exp(ip);
+
+	return ans;
 }
