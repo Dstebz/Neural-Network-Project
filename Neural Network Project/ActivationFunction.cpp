@@ -1,4 +1,4 @@
-#include "ReLU.h"
+
 #include <vector>
 
 double reLU(double ip) {		//compares input with 0. If input, ip, is positive then it returns ip, if negative or 0 then returns 0.
@@ -11,5 +11,5 @@ double reLU(double ip) {		//compares input with 0. If input, ip, is positive the
 }
 
 double softmax(std::vector<double> ip) {
-
+	return 0;
 }

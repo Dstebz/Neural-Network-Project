@@ -3,6 +3,9 @@
 
 #include <vector>
 #include "Layer.h"
+#include <Eigen>
+
+
 
 
 class NeuralNetwork {
