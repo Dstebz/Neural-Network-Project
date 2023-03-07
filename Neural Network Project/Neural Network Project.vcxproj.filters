@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Activation Function">
       <UniqueIdentifier>{048bf797-ac1d-429f-a3d9-e0c5c85132d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Layers">
+      <UniqueIdentifier>{ac31476f-c137-4e31-9807-10917530ba37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NeuralNetwork.cpp">
@@ -29,6 +32,18 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Convolution.cpp">
+      <Filter>Resource Files\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="Deconvolution.cpp">
+      <Filter>Resource Files\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="FullyConnected.cpp">
+      <Filter>Resource Files\Layers</Filter>
+    </ClCompile>
+    <ClCompile Include="Pooling.cpp">
+      <Filter>Resource Files\Layers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

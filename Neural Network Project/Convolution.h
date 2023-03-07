@@ -1,6 +1,9 @@
 #pragma once
-
 #include "ActivationFunction.h"
+#include "Layer.h"
+#include <Eigen>
+
+
 struct C_Parameters_Default {
 	int stride = 1;
 	int padding = 1;
@@ -17,7 +20,7 @@ struct C_Parameters : C_Parameters_Default { //gives default values until overri
 };
 class ConvolutionLayer : Layer<C_Parameters> {
 private:
-	
+	C_Parameters parameters;
 
 public:
 	//Deconvolution parameters
@@ -30,13 +33,9 @@ public:
 
 
 	//methods
-	void Run(); //Run(Input)
-	C_Parameters getParameters(); //should be able to initialise with any Parameter type? change in parent>
-	void setParameters(C_Parameters);
-
-	double activationFunction = ActivationFunction::sigmoid();
-
-
+	Eigen::MatrixXd Run(Eigen::MatrixXd input); //returns dynamic size array of doubles
+	C_Parameters getParameters(); 
+	void setParameters(C_Parameters params);
 
 };
 
@@ -44,6 +43,13 @@ ConvolutionLayer::ConvolutionLayer() { //Empty / default constructor
 
 }
 
-ConvolutionLayer::DeconvolutionLayer(CC_Parameters) {
+ConvolutionLayer::ConvolutionLayer(C_Parameters params) {
+	this->parameters = params;
+}
 
+
+
+//methods
+Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
+	
 }

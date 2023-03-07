@@ -131,9 +131,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Convolution.cpp" />
+    <ClCompile Include="Deconvolution.cpp" />
+    <ClCompile Include="FullyConnected.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NeuralNetwork.cpp" />
     <ClCompile Include="ActivationFunction.cpp" />
+    <ClCompile Include="Pooling.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Convolution.h" />
