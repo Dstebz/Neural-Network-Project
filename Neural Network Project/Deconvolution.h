@@ -4,26 +4,28 @@
 #include <any> //generics for changing parameters
 #include "Layer.h"
 
+struct DC_Parameters_Default {
+	int stride = 1;
+	int padding = 1;
+	int kernelSize = 3;
+	int inputChannels = 1;
+	int outputChannels = 1;
+};
+struct DC_Parameters : DC_Parameters_Default { //gives default values until overriden
+	int stride;
+	int padding;
+	int kernelSize;
+	int inputChannels;
+	int outputChannels;
+};
 
-class DeconvolutionLayer : Layer{
+class DeconvolutionLayer : Layer<DC_Parameters>{
 private:
-	struct DC_Parameters_Default {
-		int stride = 1;
-		int padding = 1;
-		int kernelSize = 3;
-		int inputChannels = 1;
-		int outputChannels = 1;
-	};
+	
 
 public:
 	//Deconvolution parameters
-	struct DC_Parameters : DC_Parameters_Default { //gives default values until overriden
-		int stride;
-		int padding;
-		int kernelSize;
-		int inputChannels;
-		int outputChannels;
-	};
+	
 	//Constructors
 	DeconvolutionLayer();
 	DeconvolutionLayer(DC_Parameters params);
@@ -33,7 +35,7 @@ public:
 
 	//methods
 	void Run(); //Run(Input)
-	L_Parameters getParameters(); //should be able to initialise with any Parameter type? change in parent>
+	DC_Parameters getParameters(); //should be able to initialise with any Parameter type? change in parent>
 	void setParameters(DC_Parameters); 
 	
 
