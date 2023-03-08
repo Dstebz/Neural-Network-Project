@@ -44,12 +44,11 @@ ConvolutionLayer::ConvolutionLayer() { //Empty / default constructor
 }
 
 ConvolutionLayer::ConvolutionLayer(C_Parameters params) {
-	this->parameters = params;
+	
 }
 
 
 
 //methods
 Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
-	
 }
