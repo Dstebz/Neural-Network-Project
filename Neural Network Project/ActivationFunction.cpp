@@ -1,38 +1,60 @@
 #include "ActivationFunction.h"
-#include <vector>
 #include <cmath>
+#include <Eigen>
 
-double ActivationFunction::reLU(double ip) {	//compares input with 0. If input, ip, is positive then it returns ip, if negative or 0 then returns 0.
-	if (ip <= 0) {
-		return 0;
+
+
+Eigen::MatrixXd ActivationFunction::reLU(Eigen::MatrixXd ip) {	//reLU method working
+	for (int i = 0; i < ip.rows(); i++) {
+		for (int j = 0; j < ip.cols(); j++) {					
+			if (ip(i,j) <= 0) {
+				ip(i, j) = 0;
+			}
+		}
+	}	
+	return ip;													
+}
+
+
+
+Eigen::MatrixXd ActivationFunction::tanh(Eigen::MatrixXd ip) {			//tanh method working
+	Eigen::MatrixXd ans;
+
+	//ans = exp(2 * ip) - 1 / exp(2 * ip) + 1;
+
+	ans = (((2 * ip).array()).exp() - 1) / (((2 * ip).array()).exp() + 1);
+		
+	return ans;
+}
+
+
+
+Eigen::MatrixXd ActivationFunction::sigmoid(Eigen::MatrixXd ip) {		//sigmoid method working 
+	Eigen::MatrixXd ans;
+
+	ans = 1 /( 1 + (-ip.array()).exp());
+
+	return ans;
+}
+
+
+Eigen::MatrixXd ActivationFunction::softmax(Eigen::MatrixXd ip) {		//softmax method working
+
+	double totalExpon = 0;
+
+	for (int i = 0; i < ip.rows(); i++) {
+		for (int j = 0; j < ip.cols(); j++) {							//getting sigma part of equation to aid simplicity in next part
+			totalExpon += exp(ip(i, j));
+		}
 	}
-	else {
-		return ip;				//returns ip since y=x for non-zero values of x
+	
+
+	for (int i = 0; i < ip.rows(); i++) {
+		for (int j = 0; j < ip.cols(); j++) {							//iterating through all elements of matrix
+			ip(i, j) = exp(ip(i, j)) / totalExpon;
+		}
 	}
+
+	return ip;
 }
 
-double ActivationFunction::tanh(double ip) {
-	double ans;
-
-	ans = exp(2 * ip) - 1 / exp(2 * ip) + 1;
-
-	return ans;
-}
-
-
-double ActivationFunction::sigmoid(double ip) {
-	double ans;
-
-	ans = 1 / (1 + exp(-ip));
-
-	return ans;
-}
-
-
-double ActivationFunction::softmax(double ip) {
-	double ans;
-
-	ans = exp(ip) / 1 + exp(ip);
-
-	return ans;
-}

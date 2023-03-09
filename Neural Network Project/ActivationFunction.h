@@ -1,14 +1,13 @@
 #pragma once
-
-// f(x) = max(0,x)
+#include <Eigen>
 
 
 class ActivationFunction {
 public:
 	
-	static double reLU(double ip);			//maybe include this within layers since it's not taking up much space
-	static double tanh(double ip);
-	static double sigmoid(double ip);	
-	static double softmax(double ip);
+	Eigen::MatrixXd reLU(Eigen::MatrixXd ip);			//maybe include this within layers since it's not taking up much space
+	Eigen::MatrixXd tanh(Eigen::MatrixXd ip);	
+	Eigen::MatrixXd sigmoid(Eigen::MatrixXd ip);
+	Eigen::MatrixXd softmax(Eigen::MatrixXd ip);
 
 };

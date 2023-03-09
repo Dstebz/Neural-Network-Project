@@ -53,3 +53,4 @@ ConvolutionLayer::ConvolutionLayer(C_Parameters params) {
 Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
 	
 }
+
