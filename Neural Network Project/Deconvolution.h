@@ -10,6 +10,7 @@ struct DC_Parameters_Default {
 	int kernelSize = 3;
 	int inputChannels = 1;
 	int outputChannels = 1;
+	
 };
 struct DC_Parameters : DC_Parameters_Default { //gives default values until overriden
 	int stride;
@@ -21,7 +22,8 @@ struct DC_Parameters : DC_Parameters_Default { //gives default values until over
 
 class DeconvolutionLayer : Layer<DC_Parameters>{
 private:
-	
+	DC_Parameters parameters;
+	Eigen::MatrixXd kernel;
 
 public:
 	//Deconvolution parameters
