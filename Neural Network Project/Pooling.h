@@ -3,18 +3,16 @@
 #include "Layer.h"
 
 struct PL_Parameters_Default {
-	int map_width;
-	int map_height;
-	int n_channels;
-	int filter_size;
-	int stride;
+	int filter = 1;
+	int output_channels = 1; 
+	int input_channels = 1;
+	int stride = 1;
 };
 
 struct PL_Parameters : PL_Parameters_Default {
-	int map_width;
-	int map_height;
-	int n_channels;
-	int filter_size;
+	int filter;
+	int output_channels;
+	int input_channels;
 	int stride;
 
 };
@@ -34,9 +32,17 @@ public:
 	~PoolingLayer();
 
 	//methods required
-	int getMax(/* matrix of kernel, */ int map_width, int map_height, int filter_size, int stride);			//used to calculate the max pooling value
+	Eigen::MatrixXd max_pool(/* input matrix */ int filter, int stride);	
 
-												//also need to use the max values to generate down sized matrix
+	Eigen::MatrixXd avg_pool(/* input matrix */ int filter, int stride);
+
+	Eigen::MatrixXd global_pool(/* input matrix */);
+
+	//maybe include method that checks whether pooling is possible due to dimensions of filter, stride, input matrix		
+	
+	void filter_limits(/* input matrix */ int filter, int stride)		//checks whether pooling method is possible 
+																		//i.e. stride cant be more than input_width - filter_width
+																		//check logbook for more info
 
 	void Run(); //takes input and runs
 	PL_Parameters getParameters(); 
