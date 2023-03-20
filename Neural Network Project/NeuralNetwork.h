@@ -20,7 +20,7 @@ private:
 protected:
 	//Neural Network parameters
 	NN_Parameters parameters;
-	std::vector<Layer> hiddenLayers;
+	std::vector<Layer<T>> hiddenLayers;
 
 	
 public:

@@ -3,14 +3,16 @@
 
 #include <string>
 #include <variant>
+#include <Eigen>
 
 #include "Deconvolution.h"
 #include "Convolution.h"
 #include "Pooling.h"
 #include "FullyConnected.h"
-#include <Eigen>
 
-template <typename ParameterStruct>
+
+template <typename T>
+
 class Layer { //interface class
 
 protected:
@@ -20,9 +22,9 @@ public:
 	//destructor
 	~Layer();
 	
-	virtual Eigen::Matrix Run(Eigen::Matrix input); //return matrix / image?
-	virtual ParameterStruct getParameters() = 0;
-	virtual void setParameters(ParameterStruct params) = 0; 
+	virtual Eigen::MatrixXd Run(Eigen::MatrixXd input); //return matrix / image?
+	virtual T getParameters() = 0;
+	virtual void setParameters(T params) = 0; 
 
 	virtual double activationFunction();
 
