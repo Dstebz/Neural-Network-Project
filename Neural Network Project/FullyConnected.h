@@ -1,33 +1,22 @@
 #pragma once
-
 #include "Layer.h"
-struct FC_Parameters_Default {
 
-	//	int stride = 1;				//how much the kernel moves after each cycle
-	//	int padding = 1;			//padding used to assist the kernel in processing of matrix. A padding of 'n' will add an 'n' thick border of 0's
-	//	int kernelSize = 3;			//size of 'filter' being used
-	//	int inputChannels = 1;
-	//	int outputChannels = 1;		//can't we just put this in the default constructor? Will need to do this in the .cpp file
+struct FC_Parameters_Default {		//need flattening at this point
 
 	int inputChannels = 1;
-	int batchSize = 1;
 	int outputChannels = 1;
-
+	Eigen::MatrixXd weight = Eigen::MatrixXd::Constant(inputChannels, outputChannels, 1);
 
 };
+
 //Fully Connected Parameters
 struct FC_Parameters : FC_Parameters_Default { //gives default values until overriden
-	/*
-	int stride;
-	int padding;
-	int kernelSize;
-	int inputChannels;
-	int outputChannels;
-	*/
 
 	int inputChannels;
 	int outputChannels;
-	int batchSize;				/* choosing appropriate batch size means that memory usage is balanced well with training speed
+	Eigen::MatrixXd weight;
+			
+								/* choosing appropriate batch size means that memory usage is balanced well with training speed
 								- batch size of around 32 should be sufficient, can be decrease it for accuracy or increase it for efficiency
 								*/
 
@@ -40,21 +29,26 @@ struct FC_Parameters : FC_Parameters_Default { //gives default values until over
 
 class FullyConnectedLayer : Layer<FC_Parameters> {
 private: 
-	
+	FC_Parameters parameters;
 
 public: 
-	
 
 	//constructors
-
 	FullyConnectedLayer();
 	FullyConnectedLayer(FC_Parameters params);
+	//FullyConnectedLayer(FC_Parameters params, Eigen::MatrixXd weights);	maybe no need for this since already in FC_Parameters struct
 
 	//Destructor
-
 	~FullyConnectedLayer();
 
+	//methods
+	void Run(); 
+	FC_Parameters getParameters();								//setters and getters
+	void setParameters(FC_Parameters);			
+												//idk if setWeight is needed
 
-	//Also need to add the final output layer
+	Eigen::VectorXd to_linear(Eigen::MatrixXd ip);				//apply activation function then do linearity.
+};								
+															
+									
 
-};

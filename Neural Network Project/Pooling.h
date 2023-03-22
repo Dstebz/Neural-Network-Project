@@ -15,11 +15,15 @@ struct PL_Parameters : PL_Parameters_Default {
 	int input_channels;
 	int stride;
 
+
+	
 };
 
 class PoolingLayer : Layer<PL_Parameters> {		//pooling layer used to reduce dimension of feature map, reducing number of parameters to learn...
 private:							//max pooling used to capture most dominant aspects of feature map (i.e. will choose largest value in quadrant of matrix)
 	
+	//Pooling Parameters
+	PL_Parameters parameters;
 
 public: 
 	//Pooling Parameters
@@ -32,22 +36,17 @@ public:
 	~PoolingLayer();
 
 	//methods required
-	Eigen::MatrixXd max_pool(/* input matrix */ int filter, int stride);	
+	Eigen::MatrixXd max_pool(Eigen::MatrixXd input, int filter, int stride);
 
-	Eigen::MatrixXd avg_pool(/* input matrix */ int filter, int stride);
+	Eigen::MatrixXd avg_pool(Eigen::MatrixXd input, int filter, int stride);
 
-	Eigen::MatrixXd global_pool(/* input matrix */);
+	double global_pool(Eigen::MatrixXd input, std::string global_pool_type);
 
 	//maybe include method that checks whether pooling is possible due to dimensions of filter, stride, input matrix		
 	
-	void filter_limits(/* input matrix */ int filter, int stride)		//checks whether pooling method is possible 
-																		//i.e. stride cant be more than input_width - filter_width
-																		//check logbook for more info
-
 	void Run(); //takes input and runs
-	PL_Parameters getParameters(); 
+	PL_Parameters getParameters();                        //should be defined in Layer.h
 	void setParameters(PL_Parameters);
-
 
 };
 
