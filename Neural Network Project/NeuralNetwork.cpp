@@ -28,8 +28,8 @@ public:
 	//constructors
 	NeuralNetwork();
 	NeuralNetwork(NN_Parameters params);
-	NeuralNetwork(std::vector<Layer<std::any>> hiddenLayers); // ANY TO VARIANT
-	NeuralNetwork(NN_Parameters params, std::vector<Layer<std::any>> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(NN_Parameters params, std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers); // ANY TO VARIANT
 	//destructor
 	~NeuralNetwork();
 
@@ -56,11 +56,11 @@ NeuralNetwork::NeuralNetwork(NN_Parameters params) {
 	//Constructor with parameters
 }
 
-NeuralNetwork::NeuralNetwork(std::vector<Layer> hiddenLayers) {
+NeuralNetwork::NeuralNetwork(std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers) {
 	//Constructor with hidden layers
 }
 
-NeuralNetwork::NeuralNetwork(NN_Parameters params, std::vector<Layer> hiddenLayers) {
+NeuralNetwork::NeuralNetwork(NN_Parameters params, std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers) {
 	//Constructor with parameters and hidden layers
 }
 

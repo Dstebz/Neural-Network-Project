@@ -2,6 +2,7 @@
 //include Eigen
 
 #include <vector>
+#include "NeuralNetwork.h"
 #include "Layer.h"
 #include <Eigen>
 
@@ -20,46 +21,46 @@ private:
 protected:
 	//Neural Network parameters
 	NN_Parameters parameters;
-	std::vector<Layer<T>*> hiddenLayers;
+	std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers; //unique_ptr is a smart pointer that deletes itself when it goes out of scope ANY TO VARIANT
 
-	
+
 public:
 	//constructors
 	NeuralNetwork();
 	NeuralNetwork(NN_Parameters params);
-	NeuralNetwork(std::vector<Layer> hiddenLayers);
-	NeuralNetwork(NN_Parameters params, std::vector<Layer> hiddenLayers);
+	NeuralNetwork(std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(NN_Parameters params, std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers); // ANY TO VARIANT
 	//destructor
 	~NeuralNetwork();
 
 	//methods
 	void Run();
-	
+
 	NN_Parameters getParameters();
 	void setParameters(NN_Parameters);
-	
-	void addLayer(Layer layer);
+
+	void addLayer(Layer<std::any> layer);
 	void removeLayer(int index);
 	std::vector<Layer<std::any>> getLayers();
-	
-	
+
+
 };
 
 //CONSTRUCTORS
 NeuralNetwork::NeuralNetwork() {
 	//Empty / default constructor. Default params, empty Layer List
-	
+
 }
 
 NeuralNetwork::NeuralNetwork(NN_Parameters params) {
 	//Constructor with parameters
 }
 
-NeuralNetwork::NeuralNetwork(std::vector<Layer> hiddenLayers) {
+NeuralNetwork::NeuralNetwork(std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers) {
 	//Constructor with hidden layers
 }
 
-NeuralNetwork::NeuralNetwork(NN_Parameters params, std::vector<Layer> hiddenLayers) {
+NeuralNetwork::NeuralNetwork(NN_Parameters params, std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers) {
 	//Constructor with parameters and hidden layers
 }
 
