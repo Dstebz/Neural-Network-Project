@@ -59,14 +59,14 @@
     <ClInclude Include="Layer.h">
       <Filter>Header Files\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="Pooling.h">
-      <Filter>Header Files\Layer</Filter>
-    </ClInclude>
     <ClInclude Include="FullyConnected.h">
       <Filter>Header Files\Layer</Filter>
     </ClInclude>
     <ClInclude Include="ActivationFunction.h">
       <Filter>Header Files\Activation Function</Filter>
+    </ClInclude>
+    <ClInclude Include="Pooling.h">
+      <Filter>Header Files\Layer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
