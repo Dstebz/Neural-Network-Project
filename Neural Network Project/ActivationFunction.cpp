@@ -4,7 +4,7 @@
 
 
 
-Eigen::MatrixXd ActivationFunction::reLU(Eigen::MatrixXd ip) {	//reLU method working
+Eigen::MatrixXd reLU(Eigen::MatrixXd ip) {	//reLU method working
 	for (int i = 0; i < ip.rows(); i++) {
 		for (int j = 0; j < ip.cols(); j++) {					
 			if (ip(i,j) <= 0) {
@@ -17,7 +17,7 @@ Eigen::MatrixXd ActivationFunction::reLU(Eigen::MatrixXd ip) {	//reLU method wor
 
 
 
-Eigen::MatrixXd ActivationFunction::tanh(Eigen::MatrixXd ip) {			//tanh method working
+Eigen::MatrixXd tanh(Eigen::MatrixXd ip) {			//tanh method working
 	Eigen::MatrixXd ans;
 
 	//ans = exp(2 * ip) - 1 / exp(2 * ip) + 1;
@@ -29,7 +29,7 @@ Eigen::MatrixXd ActivationFunction::tanh(Eigen::MatrixXd ip) {			//tanh method w
 
 
 
-Eigen::MatrixXd ActivationFunction::sigmoid(Eigen::MatrixXd ip) {		//sigmoid method working 
+Eigen::MatrixXd sigmoid(Eigen::MatrixXd ip) {		//sigmoid method working 
 	Eigen::MatrixXd ans;
 
 	ans = 1 /( 1 + (-ip.array()).exp());
@@ -38,7 +38,7 @@ Eigen::MatrixXd ActivationFunction::sigmoid(Eigen::MatrixXd ip) {		//sigmoid met
 }
 
 
-Eigen::MatrixXd ActivationFunction::softmax(Eigen::MatrixXd ip) {		//softmax method working
+Eigen::MatrixXd softmax(Eigen::MatrixXd ip) {		//softmax method working
 
 	double totalExpon = 0;
 

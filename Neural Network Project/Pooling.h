@@ -44,7 +44,7 @@ public:
 
 	//maybe include method that checks whether pooling is possible due to dimensions of filter, stride, input matrix		
 	
-	void Run(); //takes input and runs
+	Eigen::MatrixXd Run(Eigen::MatrixXd input); //takes input and runs
 	PL_Parameters getParameters();                        //should be defined in Layer.h
 	void setParameters(PL_Parameters);
 

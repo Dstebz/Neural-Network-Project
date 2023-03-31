@@ -87,4 +87,16 @@ PoolingLayer::PoolingLayer(PL_Parameters params) {
 
 }
 
+PoolingLayer::~PoolingLayer() {	//default destructor
+
+}
+
+
+Eigen::MatrixXd PoolingLayer::Run(Eigen::MatrixXd input) {
+	//using max pooling
+	Eigen::MatrixXd output;
+	output = max_pool(input, this->parameters.filter, this->parameters.stride);
+
+	return output;
+}
 
