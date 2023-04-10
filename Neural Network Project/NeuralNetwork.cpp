@@ -7,6 +7,7 @@
 #include <Eigen>
 
 #include <any>
+#include <variant>
 
 //CONSTRUCTORS
 NeuralNetwork::NeuralNetwork() {

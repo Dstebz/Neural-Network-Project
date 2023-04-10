@@ -1,23 +1,23 @@
 #pragma once
 //include Eigen
 
-#include <vector>
 #include "NeuralNetwork.h"
 #include "Layer.h"
+
+#include <vector>
 #include <Eigen>
 #include <any>
 
-
-
+struct NN_Parameters {
+	int inputLayerDimensions = 1;
+	int hiddenLayerSize = 1;
+	int outputLayerDimensions = 1;
+};
 
 class NeuralNetwork {
 private:
 	//Neural Network parameters
-	struct NN_Parameters {
-		int inputLayerDimensions = 1;
-		int hiddenLayerSize = 1;
-		int outputLayerDimensions = 1;
-	};
+	
 
 protected:
 	//Neural Network parameters
