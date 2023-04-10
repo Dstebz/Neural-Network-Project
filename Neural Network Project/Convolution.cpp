@@ -3,22 +3,6 @@
 #include "Convolution.h"
 #include <Eigen>
 
-
-struct C_Parameters_Default {
-	int stride = 1;
-	int padding = 1;
-	int kernelSize = 3;
-	int inputChannels = 1;
-	int outputChannels = 1;
-};
-struct C_Parameters : C_Parameters_Default { //gives default values until overriden
-	int stride;
-	int padding;
-	int kernelSize;
-	int inputChannels;
-	int outputChannels;
-};
-
 ConvolutionLayer::ConvolutionLayer() { //Empty / default constructor
 	this->kernel = Eigen::MatrixXd::Constant(this->parameters.kernelSize, this->parameters.kernelSize,1); //square Matrix, initialised with 1s
 }

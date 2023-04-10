@@ -24,28 +24,21 @@ private:
 	DC_Parameters parameters;
 	Eigen::MatrixXd kernel;
 
-public:
-	//Deconvolution parameters
-	
+public:	
 	//Constructors
 	DeconvolutionLayer();
 	DeconvolutionLayer(DC_Parameters params);
+	DeconvolutionLayer(DC_Parameters params, Eigen::MatrixXd kernel) {};
+
 	//Destructor
 	~DeconvolutionLayer();
-
 
 	//methods
 	Eigen::MatrixXd Run(); //Run(Input)
 	DC_Parameters getParameters(); //should be able to initialise with any Parameter type? change in parent>
 	void setParameters(DC_Parameters); 
-	
 
-
+	void setKernel(Eigen::MatrixXd kernel);
+	Eigen::MatrixXd getKernel();
+	Eigen::MatrixXd Run(Eigen::MatrixXd input);
 };
-
-DeconvolutionLayer::DeconvolutionLayer() { //Empty / default constructor
-
-};
-
-DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params) {};
-DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params, Eigen::MatrixXd kernel) {};

@@ -22,9 +22,9 @@ DC_Parameters DeconvolutionLayer::getParameters() {
 }
 void DeconvolutionLayer::setParameters(DC_Parameters params) {}
 
-Eigen::MatrixXd DeconvolutionLayer::getKernel() {}
+Eigen::MatrixXd DeconvolutionLayer::getKernel() {};
 
-void DeconvolutionLayer::setKernel(Eigen::MatrixXd kernel) {}
+void DeconvolutionLayer::setKernel(Eigen::MatrixXd kernel) {};
 
 
 Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) {
@@ -38,5 +38,5 @@ Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) {
 		}
 	}
 	return output;
-}
+};
 

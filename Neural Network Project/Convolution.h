@@ -29,27 +29,16 @@ public:
 	//Constructors
 	ConvolutionLayer();
 	ConvolutionLayer(C_Parameters params);
+
 	//Destructor
 	~ConvolutionLayer();
-
 
 	//methods
 	Eigen::MatrixXd Run(Eigen::MatrixXd input); //returns dynamic size array of doubles
 	C_Parameters getParameters(); 
 	void setParameters(C_Parameters params);
-
+	void setKernel(Eigen::MatrixXd kernel);
+	Eigen::MatrixXd getKernel();
 };
 
-ConvolutionLayer::ConvolutionLayer() { //Empty / default constructor
-
-}
-
-ConvolutionLayer::ConvolutionLayer(C_Parameters params) {
-	
-}
-
-
-
 //methods
-Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
-}
