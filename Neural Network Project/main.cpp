@@ -7,6 +7,7 @@ Eigen::MatrixXd a{      // construct a 2x2 matrix
       {0.2,2}      // second row
 };
 
+/*
 int main() {
 	std::cout << a << std::endl;
 
@@ -43,4 +44,9 @@ int main() {
 
     return 0;
 }
+*/
 
+int main() { //Neural Networking Testing
+    
+    
+}

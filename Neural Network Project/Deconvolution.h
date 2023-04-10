@@ -28,7 +28,7 @@ public:
 	//Constructors
 	DeconvolutionLayer();
 	DeconvolutionLayer(DC_Parameters params);
-	DeconvolutionLayer(DC_Parameters params, Eigen::MatrixXd kernel) {};
+	DeconvolutionLayer(DC_Parameters params, Eigen::MatrixXd kernel);
 
 	//Destructor
 	~DeconvolutionLayer();

@@ -23,7 +23,7 @@ void FullyConnectedLayer::setParameters(FC_Parameters params) {
 
 FC_Parameters FullyConnectedLayer::getWeight() {			//not sure 
 	//unsure of output or what to put in code;
-	return;
+	return this->parameters;
 }
 
 void FullyConnectedLayer::setWeight(FC_Parameters weights) {

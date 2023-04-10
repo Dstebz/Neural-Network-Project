@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Deconvolution.h"
 #include "ActivationFunction.h"
 
@@ -9,7 +8,7 @@ DeconvolutionLayer::DeconvolutionLayer() {}; //Empty / default constructor
 
 DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params) {
 	this->parameters = params;
-	this->kernel = Eigen::MatrixXd::Random(this->parameters.kernelSize, this->parameters.kernelSize);
+	this->kernel = Eigen::MatrixXd::Constant(this->parameters.kernelSize, this->parameters.kernelSize);
 };
 
 DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params, Eigen::MatrixXd kernel) {
