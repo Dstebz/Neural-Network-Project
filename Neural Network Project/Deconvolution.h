@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Layer.h"
+#include <Eigen>
 
 struct DC_Parameters_Default {
 	int stride = 1;
@@ -34,7 +35,7 @@ public:
 
 
 	//methods
-	void Run(); //Run(Input)
+	Eigen::MatrixXd Run(); //Run(Input)
 	DC_Parameters getParameters(); //should be able to initialise with any Parameter type? change in parent>
 	void setParameters(DC_Parameters); 
 	
@@ -44,6 +45,7 @@ public:
 
 DeconvolutionLayer::DeconvolutionLayer() { //Empty / default constructor
 
-}
+};
 
-DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params) {}
+DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params) {};
+DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params, Eigen::MatrixXd kernel) {};
