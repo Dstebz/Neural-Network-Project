@@ -21,15 +21,15 @@ private:
 protected:
 	//Neural Network parameters
 	NN_Parameters parameters;
-	std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers; //unique_ptr is a smart pointer that deletes itself when it goes out of scope ANY TO VARIANT
+	std::vector<std::unique_ptr<Layer<std::variant<C_Parameters, DC_Parameters, FC_Parameters, PL_Parameters>>>> hiddenLayers; //unique_ptr is a smart pointer that deletes itself when it goes out of scope 
 
 
 public:
 	//constructors
 	NeuralNetwork();
 	NeuralNetwork(NN_Parameters params);
-	NeuralNetwork(std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers); // ANY TO VARIANT
-	NeuralNetwork(NN_Parameters params, std::vector<std::unique_ptr<Layer<std::any>>> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(std::vector<std::unique_ptr<Layer<std::variant<C_Parameters, DC_Parameters, FC_Parameters, PL_Parameters>>>> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(NN_Parameters params, std::vector<std::unique_ptr<Layer<std::variant<C_Parameters, DC_Parameters, FC_Parameters, PL_Parameters>>>> hiddenLayers); // ANY TO VARIANT
 	//destructor
 	~NeuralNetwork();
 
