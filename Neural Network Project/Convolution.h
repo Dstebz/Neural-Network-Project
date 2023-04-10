@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Layer.h"
 #include "ActivationFunction.h"
 #include <Eigen>

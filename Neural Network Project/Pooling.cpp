@@ -1,5 +1,3 @@
-#pragma once
-
 #include "pooling.h"
 
 #include <Eigen>					

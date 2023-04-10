@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Layer.h"
 
 struct FC_Parameters_Default {		//need flattening at this point

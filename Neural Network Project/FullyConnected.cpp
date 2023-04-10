@@ -1,5 +1,3 @@
-#pragma once
-
 #include "FullyConnected.h"
 #include "ActivationFunction.h"
 

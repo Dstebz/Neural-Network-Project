@@ -1,4 +1,3 @@
-#pragma once
 //include Eigen
 
 #include <vector>
