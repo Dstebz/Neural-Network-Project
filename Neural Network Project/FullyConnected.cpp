@@ -1,7 +1,9 @@
-#include <Eigen>
+#pragma once
+
 #include "FullyConnected.h"
 #include "ActivationFunction.h"
 
+#include <Eigen>
 /*
 Eigen::VectorXd FullyConnectedLayer::to_linear(Eigen::MatrixXd ip) {
 

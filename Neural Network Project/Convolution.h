@@ -1,6 +1,6 @@
 #pragma once
-#include "ActivationFunction.h"
 #include "Layer.h"
+#include "ActivationFunction.h"
 #include <Eigen>
 
 
@@ -21,6 +21,7 @@ struct C_Parameters : C_Parameters_Default { //gives default values until overri
 class ConvolutionLayer : Layer<C_Parameters> {
 private:
 	C_Parameters parameters;
+	Eigen::MatrixXd kernel;
 
 public:
 	//Deconvolution parameters

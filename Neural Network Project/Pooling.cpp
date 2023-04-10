@@ -1,8 +1,8 @@
 #pragma once
 
 #include "pooling.h"
+
 #include <Eigen>					
-#include "layer.h"
 #include <iostream>
 
 	//don't need activation function for pooling layer due to MAX and AVG pooling methods - no need for weights in this layer

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <map>
-#include <any> //generics for changing parameters
 #include "Layer.h"
 
 struct DC_Parameters_Default {
@@ -20,7 +18,7 @@ struct DC_Parameters : DC_Parameters_Default { //gives default values until over
 	int outputChannels;
 };
 
-class DeconvolutionLayer : Layer<DC_Parameters>{
+class DeconvolutionLayer : Layer<DC_Parameters> {
 private:
 	DC_Parameters parameters;
 	Eigen::MatrixXd kernel;
@@ -48,6 +46,4 @@ DeconvolutionLayer::DeconvolutionLayer() { //Empty / default constructor
 
 }
 
-DeconvolutionLayer::DeconvolutionLayer(DC_Parameters) {
-	
-}
+DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params) {}
