@@ -1,5 +1,5 @@
 
-#include "ActivationFunction.h"
+//#include "ActivationFunction.h"
 #include "Convolution.h"
 #include <Eigen>
 

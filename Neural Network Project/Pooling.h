@@ -1,6 +1,7 @@
 #pragma once		//prevents the file from being included multiple times
 
 #include "Layer.h"
+#include <Eigen>
 
 struct PL_Parameters_Default {
 	int filter = 1;
