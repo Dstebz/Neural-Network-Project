@@ -1,7 +1,6 @@
 #pragma once
 //include Eigen
 
-#include "NeuralNetwork.h"
 #include "Layer.h"
 
 #include <vector>

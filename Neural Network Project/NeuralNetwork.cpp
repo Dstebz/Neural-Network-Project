@@ -1,12 +1,15 @@
 //include Eigen
 
-#include <vector>
+
 #include "NeuralNetwork.h"
-#include "Layer.h"
+
+#include <vector>
 #include <Eigen>
 
 #include <any>
 #include <variant>
+
+std::variant<C_Parameters, DC_Parameters, FC_Parameters, PL_Parameters> Parameters;
 
 //CONSTRUCTORS
 NeuralNetwork::NeuralNetwork() {

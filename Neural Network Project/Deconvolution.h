@@ -1,6 +1,13 @@
 #pragma once
 
 #include "Layer.h"
+
+#include "Convolution.h"
+#include "Deconvolution.h"
+#include "FullyConnected.h"
+#include "Pooling.h"
+
+
 #include <Eigen>
 
 struct DC_Parameters_Default {
