@@ -3,6 +3,10 @@
 #include "Convolution.h"
 #include <Eigen>
 
+ConvolutionLayer::~ConvolutionLayer() {
+	//Destructor
+}
+
 ConvolutionLayer::ConvolutionLayer() { //Empty / default constructor
 	this->kernel = Eigen::MatrixXd::Constant(this->parameters.kernelSize, this->parameters.kernelSize,1); //square Matrix, initialised with 1s
 }
