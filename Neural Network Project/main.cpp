@@ -47,6 +47,6 @@ int main() {
 */
 
 int main() { //Neural Networking Testing
-    
-    
+    std::cout << "hello";
+    return 0;
 }

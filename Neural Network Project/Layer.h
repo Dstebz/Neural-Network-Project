@@ -2,15 +2,22 @@
 
 #include <Eigen>
 
-template <class T>
 
-class Layer { //interface class
+
+
+class BaseLayer { //Interface for layer list
+public:
+	virtual Eigen::MatrixXd Run(Eigen::MatrixXd input); //return matrix / image? //Commented out as it causes linker errors
+};
+
+template <typename T>
+class Layer : BaseLayer { //Templated interface
 
 protected:
 public:
-	virtual Layer(); //default constructor, pure virtual not required
+	Layer(); //default constructor, pure virtual breaks this?
 	
-	//virtual Eigen::MatrixXd Run(Eigen::MatrixXd input); //return matrix / image? //Commented out as it causes linker errors
+	//
 	virtual T getParameters() = 0;
 	virtual void setParameters(T params) = 0; 
 };
