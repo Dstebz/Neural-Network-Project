@@ -4,15 +4,19 @@
 
 class BaseLayer { //Interface for layer list
 public:
-	virtual Eigen::MatrixXd Run(Eigen::MatrixXd input); //return matrix / image? //Commented out as it causes linker errors
+	virtual Eigen::MatrixXd Run(Eigen::MatrixXd input);
+	
+	virtual ~BaseLayer();
+	
 };
 
 template <typename T>
-class Layer : BaseLayer { //Templated interface
+class Layer : public BaseLayer { //Templated interface
 
 protected:
 public:
-	Layer(); //default constructor, pure virtual breaks this?
+	Layer(); 
+	virtual ~Layer();
 	
 	//
 	virtual T getParameters() = 0;

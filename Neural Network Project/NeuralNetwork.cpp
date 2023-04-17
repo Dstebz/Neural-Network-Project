@@ -23,11 +23,11 @@ NeuralNetwork::NeuralNetwork(NN_Parameters params) {
 	//Constructor with parameters
 }
 
-NeuralNetwork::NeuralNetwork(std::list<BaseLayer> hiddenLayers) {
+NeuralNetwork::NeuralNetwork(std::list<std::shared_ptr<BaseLayer>> hiddenLayers) {
 	//Constructor with hidden layers
 }
 
-NeuralNetwork::NeuralNetwork(NN_Parameters params, std::list<BaseLayer> hiddenLayers) {
+NeuralNetwork::NeuralNetwork(NN_Parameters params, std::list<std::shared_ptr<BaseLayer>> hiddenLayers) {
 	//Constructor with parameters and hidden layers
 }
 
@@ -58,7 +58,7 @@ void NeuralNetwork::setParameters(NN_Parameters params) {
 void NeuralNetwork::addLayer(BaseLayer layer, int index) {
 	//Adds a layer to the neural network
 	auto it = this->hiddenLayers.begin(); //.insert requires an iterator
-	this->hiddenLayers.insert(std::next(it, index),layer); //Update to insert
+	this->hiddenLayers.insert(std::next(it, index),std::make_shared<BaseLayer>(layer)); //Update to insert
 }
 
 void NeuralNetwork::removeLayer(int index) {
@@ -67,7 +67,7 @@ void NeuralNetwork::removeLayer(int index) {
 	this->hiddenLayers.erase(std::next(it,index)); //Update to erase
 }
 
-std::list<BaseLayer> NeuralNetwork::getLayers() {
+std::list<std::shared_ptr<BaseLayer>> NeuralNetwork::getLayers() {
 	//Returns the list of layers in the neural network
 	return this->hiddenLayers;
 }

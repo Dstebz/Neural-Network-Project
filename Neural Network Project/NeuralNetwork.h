@@ -25,15 +25,15 @@ private:
 protected:
 	//Neural Network parameters
 	NN_Parameters parameters;
-	std::list<BaseLayer> hiddenLayers; 
+	std::list<std::shared_ptr<BaseLayer>> hiddenLayers; 
 
 
 public:
 	//constructors
 	NeuralNetwork();
 	NeuralNetwork(NN_Parameters params);
-	NeuralNetwork(std::list<BaseLayer> hiddenLayers); // ANY TO VARIANT
-	NeuralNetwork(NN_Parameters params, std::list<BaseLayer> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(std::list<std::shared_ptr<BaseLayer>> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(NN_Parameters params, std::list<std::shared_ptr<BaseLayer>> hiddenLayers); // ANY TO VARIANT
 	//destructor
 	~NeuralNetwork();
 
@@ -45,7 +45,7 @@ public:
 
 	void addLayer(BaseLayer layer, int index);
 	void removeLayer(int index);
-	std::list<BaseLayer> getLayers();
+	std::list<std::shared_ptr<BaseLayer>> getLayers();
 
 
 };
