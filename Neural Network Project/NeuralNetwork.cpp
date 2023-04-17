@@ -7,7 +7,7 @@
 #include "FullyConnected.h"
 #include "Pooling.h"
 
-#include <vector>
+#include <list>
 #include <Eigen>
 #include <variant>
 
@@ -23,14 +23,52 @@ NeuralNetwork::NeuralNetwork(NN_Parameters params) {
 	//Constructor with parameters
 }
 
-NeuralNetwork::NeuralNetwork(std::vector<std::unique_ptr<BaseLayer>> hiddenLayers) {
+NeuralNetwork::NeuralNetwork(std::list<BaseLayer> hiddenLayers) {
 	//Constructor with hidden layers
 }
 
-NeuralNetwork::NeuralNetwork(NN_Parameters params, std::vector<std::unique_ptr<BaseLayer>> hiddenLayers) {
+NeuralNetwork::NeuralNetwork(NN_Parameters params, std::list<BaseLayer> hiddenLayers) {
 	//Constructor with parameters and hidden layers
 }
 
 NeuralNetwork::~NeuralNetwork() {
 	//Destructor
 }
+
+//METHODS
+
+Eigen::MatrixXd NeuralNetwork::Run() {
+	//Runs the neural network
+
+	return Eigen::MatrixXd(0, 0);
+}
+
+NN_Parameters NeuralNetwork::getParameters() {
+	//Returns the parameters of the neural network
+	
+	return this->parameters;
+}
+
+void NeuralNetwork::setParameters(NN_Parameters params) {
+	//Sets the parameters of the neural network
+
+	this->parameters = params;
+}
+
+void NeuralNetwork::addLayer(BaseLayer layer, int index) {
+	//Adds a layer to the neural network
+	auto it = this->hiddenLayers.begin(); //.insert requires an iterator
+	this->hiddenLayers.insert(std::next(it, index),layer); //Update to insert
+}
+
+void NeuralNetwork::removeLayer(int index) {
+	//Removes a layer from the neural network
+	auto it = this->hiddenLayers.begin(); //.erase requires an iterator
+	this->hiddenLayers.erase(std::next(it,index)); //Update to erase
+}
+
+std::list<BaseLayer> NeuralNetwork::getLayers() {
+	//Returns the list of layers in the neural network
+	return this->hiddenLayers;
+}
+

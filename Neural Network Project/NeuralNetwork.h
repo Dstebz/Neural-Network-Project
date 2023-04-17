@@ -7,7 +7,7 @@
 #include "FullyConnected.h"
 #include "Pooling.h"
 
-#include <vector>
+#include <list>
 #include <Eigen>
 #include <any>
 
@@ -25,27 +25,27 @@ private:
 protected:
 	//Neural Network parameters
 	NN_Parameters parameters;
-	std::vector<std::unique_ptr<BaseLayer>> hiddenLayers; //unique_ptr is a smart pointer that deletes itself when it goes out of scope 
+	std::list<BaseLayer> hiddenLayers; 
 
 
 public:
 	//constructors
 	NeuralNetwork();
 	NeuralNetwork(NN_Parameters params);
-	NeuralNetwork(std::vector<std::unique_ptr<BaseLayer>> hiddenLayers); // ANY TO VARIANT
-	NeuralNetwork(NN_Parameters params, std::vector<std::unique_ptr<BaseLayer>> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(std::list<BaseLayer> hiddenLayers); // ANY TO VARIANT
+	NeuralNetwork(NN_Parameters params, std::list<BaseLayer> hiddenLayers); // ANY TO VARIANT
 	//destructor
 	~NeuralNetwork();
 
 	//methods
-	void Run();
+	Eigen::MatrixXd Run();
 
 	NN_Parameters getParameters();
 	void setParameters(NN_Parameters);
 
-	void addLayer(Layer<std::any> layer);
+	void addLayer(BaseLayer layer, int index);
 	void removeLayer(int index);
-	std::vector<Layer<std::any>> getLayers();
+	std::list<BaseLayer> getLayers();
 
 
 };

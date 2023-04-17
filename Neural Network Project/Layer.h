@@ -2,12 +2,9 @@
 
 #include <Eigen>
 
-
-
-
 class BaseLayer { //Interface for layer list
 public:
-	//virtual Eigen::MatrixXd Run(Eigen::MatrixXd input); //return matrix / image? //Commented out as it causes linker errors
+	virtual Eigen::MatrixXd Run(Eigen::MatrixXd input); //return matrix / image? //Commented out as it causes linker errors
 };
 
 template <typename T>
@@ -21,3 +18,4 @@ public:
 	virtual T getParameters() = 0;
 	virtual void setParameters(T params) = 0; 
 };
+
