@@ -28,7 +28,7 @@ struct FC_Parameters : FC_Parameters_Default { //gives default values until over
 								//bias helps to offset the result
 };
 
-class FullyConnectedLayer : Layer<FC_Parameters> {
+class FullyConnectedLayer : BaseLayer
 private: 
 	FC_Parameters parameters;
 

@@ -19,7 +19,7 @@ struct C_Parameters : C_Parameters_Default { //gives default values until overri
 	int inputChannels;
 	int outputChannels;
 };
-class ConvolutionLayer : Layer<C_Parameters> {
+class ConvolutionLayer : BaseLayer {
 private:
 	C_Parameters parameters;
 	Eigen::MatrixXd kernel;

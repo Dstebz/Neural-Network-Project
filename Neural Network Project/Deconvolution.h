@@ -25,7 +25,7 @@ struct DC_Parameters : DC_Parameters_Default { //gives default values until over
 	int outputChannels;
 };
 
-class DeconvolutionLayer : Layer<DC_Parameters> {
+class DeconvolutionLayer : BaseLayer {
 private:
 	DC_Parameters parameters;
 	Eigen::MatrixXd kernel;

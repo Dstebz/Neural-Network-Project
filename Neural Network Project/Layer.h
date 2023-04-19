@@ -10,6 +10,8 @@ public:
 	
 };
 
+
+/*
 template <typename T>
 class Layer : public BaseLayer { //Templated interface
 
@@ -22,4 +24,5 @@ public:
 	virtual T getParameters() = 0;
 	virtual void setParameters(T params) = 0; 
 };
+*/
 
