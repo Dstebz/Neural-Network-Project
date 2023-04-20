@@ -2,37 +2,38 @@
 #include "Layer.h"
 #include <Eigen>
 
-struct FC_Parameters_Default {		//need flattening at this point
 
-	int inputChannels = 1;
-	int outputChannels = 1;
-	Eigen::MatrixXd weight = Eigen::MatrixXd::Constant(inputChannels, outputChannels, 1);		//want default matrix of 1s to begin with
-
-};
 
 //Fully Connected Parameters
-struct FC_Parameters : FC_Parameters_Default { //gives default values until overriden
 
-	int inputChannels;
-	int outputChannels;
-	Eigen::MatrixXd weight;
-			
-								/* choosing appropriate batch size means that memory usage is balanced well with training speed
-								- batch size of around 32 should be sufficient, can be decrease it for accuracy or increase it for efficiency
-								*/
+class FullyConnectedLayer : BaseLayer {
+private:
+	struct FC_Parameters_Default {		//need flattening at this point
+		int inputChannels = 1;
+		int outputChannels = 1;
+		Eigen::MatrixXd weight = Eigen::MatrixXd::Constant(inputChannels, outputChannels, 1);		//want default matrix of 1s to begin with
 
-								//maybe need weight variable of type vector to perfrom matrix multiplication 
-								//activation function should then be applied to this
-								//maybe need bias as well
-								//bias should be added to summation before being sent to activation function
-								//bias helps to offset the result
-};
-
-class FullyConnectedLayer : BaseLayer
-private: 
+	};
 	FC_Parameters parameters;
 
-public: 
+public:
+	struct FC_Parameters : FC_Parameters_Default { //gives default values until overriden
+
+		int inputChannels;
+		int outputChannels;
+		Eigen::MatrixXd weight;
+
+		/* choosing appropriate batch size means that memory usage is balanced well with training speed
+		- batch size of around 32 should be sufficient, can be decrease it for accuracy or increase it for efficiency
+		*/
+
+		//maybe need weight variable of type vector to perfrom matrix multiplication 
+		//activation function should then be applied to this
+		//maybe need bias as well
+		//bias should be added to summation before being sent to activation function
+		//bias helps to offset the result
+	};
+
 
 	//constructors
 	FullyConnectedLayer();

@@ -5,28 +5,29 @@
 #include <Eigen>
 
 
-struct C_Parameters_Default {
-	int stride = 1;
-	int padding = 1;
-	int kernelSize = 3;
-	int inputChannels = 1;
-	int outputChannels = 1;
-};
-struct C_Parameters : C_Parameters_Default { //gives default values until overriden
-	int stride;
-	int padding;
-	int kernelSize;
-	int inputChannels;
-	int outputChannels;
-};
+
 class ConvolutionLayer : BaseLayer {
 private:
+	struct C_Parameters_Default {
+		int stride = 1;
+		int padding = 1;
+		int kernelSize = 3;
+		int inputChannels = 1;
+		int outputChannels = 1;
+	};
+	
 	C_Parameters parameters;
 	Eigen::MatrixXd kernel;
 
 public:
-	//Deconvolution parameters
-	
+	//Convolution parameters
+	struct C_Parameters : C_Parameters_Default { //gives default values until overriden
+		int stride;
+		int padding;
+		int kernelSize;
+		int inputChannels;
+		int outputChannels;
+	};
 	//Constructors
 	ConvolutionLayer();
 	ConvolutionLayer(C_Parameters params);
