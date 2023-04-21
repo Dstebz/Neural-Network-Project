@@ -12,7 +12,7 @@ Eigen::VectorXd FullyConnectedLayer::to_linear(Eigen::MatrixXd ip) {
 probs don't need rn
 */
 
-FullyConnectedLayer::FC_Parameters FullyConnectedLayer::getParameters() {
+FC_Parameters FullyConnectedLayer::getParameters() {
 	return this->parameters;
 };
 
@@ -20,7 +20,7 @@ void FullyConnectedLayer::setParameters(FC_Parameters params) {
 	this->parameters = params;
 };
 
-FullyConnectedLayer::FC_Parameters FullyConnectedLayer::getWeight() {			//not sure 
+FC_Parameters FullyConnectedLayer::getWeight() {			//not sure 
 	//unsure of output or what to put in code;
 	return this->parameters;
 };

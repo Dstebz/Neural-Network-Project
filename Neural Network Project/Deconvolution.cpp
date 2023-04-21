@@ -17,7 +17,7 @@ DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params, Eigen::MatrixXd ker
 };
 
 //methods
-DeconvolutionLayer::DC_Parameters DeconvolutionLayer::getParameters() {
+DC_Parameters DeconvolutionLayer::getParameters() {
 	return this->parameters;
 }
 void DeconvolutionLayer::setParameters(DC_Parameters params) {

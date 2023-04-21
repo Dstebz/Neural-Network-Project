@@ -11,35 +11,27 @@
 #include <Eigen>
 
 
-
-
+struct DC_Parameters {
+	int stride = 1;
+	int padding = 1;
+	int kernelSize = 3;
+	int inputChannels = 1;
+	int outputChannels = 1;
+};
 class DeconvolutionLayer : BaseLayer {
 private:
-	struct DC_Parameters_Default {
-		int stride = 1;
-		int padding = 1;
-		int kernelSize = 3;
-		int inputChannels = 1;
-		int outputChannels = 1;
-	};
+
 	DC_Parameters parameters;
 	Eigen::MatrixXd kernel;
 
 public:
-	struct DC_Parameters : DC_Parameters_Default { //gives default values until overriden
-		int stride;
-		int padding;
-		int kernelSize;
-		int inputChannels;
-		int outputChannels;
-	};
 	//Constructors
 	DeconvolutionLayer();
 	DeconvolutionLayer(DC_Parameters params);
 	DeconvolutionLayer(DC_Parameters params, Eigen::MatrixXd kernel);
 
 	//Destructor
-	~DeconvolutionLayer();
+	//~DeconvolutionLayer();
 
 	//Parameters
 	//methods

@@ -4,30 +4,29 @@
 #include <Eigen>
 
 
+struct PL_Parameters_Default {
+	int filter = 1;
+	int output_channels = 1;
+	int input_channels = 1;
+	int stride = 1;
+};
+struct PL_Parameters : PL_Parameters_Default {
+	int filter;
+	int output_channels;
+	int input_channels;
+	int stride;
+};
 
 class PoolingLayer : BaseLayer {		//pooling layer used to reduce dimension of feature map, reducing number of parameters to learn...
 private:							//max pooling used to capture most dominant aspects of feature map (i.e. will choose largest value in quadrant of matrix)
-	struct PL_Parameters_Default {
-		int filter = 1;
-		int output_channels = 1;
-		int input_channels = 1;
-		int stride = 1;
-	};
-
+	
 	
 	//Pooling Parameters
+	
 	PL_Parameters parameters;
 
 public:
-	struct PL_Parameters : PL_Parameters_Default {
-		int filter;
-		int output_channels;
-		int input_channels;
-		int stride;
-
-
-
-	};
+	
 	//Pooling Parameters
 	
 	//Pooling constructors

@@ -19,7 +19,7 @@ ConvolutionLayer::ConvolutionLayer(C_Parameters params) {
 
 
 //methods
-ConvolutionLayer::C_Parameters ConvolutionLayer::getParameters() {
+C_Parameters ConvolutionLayer::getParameters() {
 	return this->parameters;
 }
 void ConvolutionLayer::setParameters(C_Parameters params) {

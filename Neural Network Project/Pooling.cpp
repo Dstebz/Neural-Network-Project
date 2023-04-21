@@ -68,7 +68,7 @@ double PoolingLayer::global_pool(Eigen::MatrixXd input, std::string global_pool_
 };
 
 
-PoolingLayer::PL_Parameters PoolingLayer::getParameters() {
+PL_Parameters PoolingLayer::getParameters() {
 	return this->parameters;
 }
 
