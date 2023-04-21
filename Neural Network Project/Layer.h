@@ -4,13 +4,14 @@
 
 class BaseLayer { //Interface for layer list
 public:
-	virtual Eigen::MatrixXd Run(Eigen::MatrixXd input);
-	
-	virtual ~BaseLayer();
-	
+	virtual Eigen::MatrixXd Run(Eigen::MatrixXd input) {
+		throw std::exception("Should be overriden");
+		return input; };
+
+	virtual ~BaseLayer() {
+		throw std::exception("Should be overriden");
+	}
 };
-
-
 /*
 template <typename T>
 class Layer : public BaseLayer { //Templated interface

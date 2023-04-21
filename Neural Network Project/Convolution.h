@@ -28,7 +28,7 @@ public:
 	ConvolutionLayer(C_Parameters params);
 
 	//Destructor
-	~ConvolutionLayer();
+	~ConvolutionLayer() override;
 
 	//methods
 	Eigen::MatrixXd Run(Eigen::MatrixXd input); //returns dynamic size array of doubles
