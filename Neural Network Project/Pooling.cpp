@@ -1,7 +1,7 @@
 #include "pooling.h"
 
 #include <Eigen>					
-#include <iostream>
+#
 
 	//don't need activation function for pooling layer due to MAX and AVG pooling methods - no need for weights in this layer
 
@@ -61,7 +61,7 @@ double PoolingLayer::global_pool(Eigen::MatrixXd input, std::string global_pool_
 		ans = input.mean();
 	}
 	else {
-		throw "invalid pooling type, please enter 'max', 'min' or 'avg'" << std::endl;
+		throw std::exception("invalid pooling type, please enter 'max', 'min' or 'avg'");
 	}
 
 	return ans;				//should return a single value
@@ -77,17 +77,13 @@ void PoolingLayer::setParameters(PL_Parameters params) {
 }
 
 
-PoolingLayer::PoolingLayer() { //Empty / default constructor
+PoolingLayer::PoolingLayer() = default;
 
+PoolingLayer::PoolingLayer(PL_Parameters params) { //Constructor
+	this->parameters = params;
 }
 
-PoolingLayer::PoolingLayer(PL_Parameters params) {
-
-}
-
-PoolingLayer::~PoolingLayer() {	//default destructor
-
-}
+PoolingLayer::~PoolingLayer() = default; //Destructor
 
 
 Eigen::MatrixXd PoolingLayer::Run(Eigen::MatrixXd input) {

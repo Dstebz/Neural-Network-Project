@@ -6,7 +6,7 @@
 
 ActivationLayer::ActivationLayer() = default;
 
-ActivationLayer::ActivationLayer(std::function <Eigen::MatrixXd(Eigen::MatrixXd)> activationFunction)
+ActivationLayer::ActivationLayer(std::function <Eigen::MatrixXd(Eigen::MatrixXd)> activationFunction) //generic function, takes in a matrix and returns a matrix
 {
 	this->activationFunction = activationFunction;
 }

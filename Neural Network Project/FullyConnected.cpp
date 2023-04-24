@@ -23,25 +23,22 @@ FC_Parameters FullyConnectedLayer::getWeight() {			//not sure
 	return this->parameters;
 };
 
-void FullyConnectedLayer::setWeight(FC_Parameters weights) {
+void FullyConnectedLayer::setWeight(FC_Parameters const weights) {
 
 };
 
-FullyConnectedLayer::FullyConnectedLayer() { //Empty / default constructor
+FullyConnectedLayer::FullyConnectedLayer() = default;
 
-};
-
-FullyConnectedLayer::FullyConnectedLayer(FC_Parameters params) { //constructor with parameters
+FullyConnectedLayer::FullyConnectedLayer(FC_Parameters const params) { //constructor with parameters
 	//not sure what to include in here
-
+	this->parameters = params;
 };
 
-FullyConnectedLayer::~FullyConnectedLayer() {	//default destructor
-};
+FullyConnectedLayer::~FullyConnectedLayer() = default; 
 
 Eigen::MatrixXd FullyConnectedLayer::Run(Eigen::MatrixXd input) {
 	
 	Eigen::MatrixXd ans = input * this->parameters.weight;
 
-	return ans; //use activation function afterwards!
+	return ans;
 };

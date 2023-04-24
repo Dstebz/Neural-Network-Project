@@ -16,7 +16,7 @@
 
 
 //testing of activation functions
-void activationTest() {
+void testActivation() {
     std::cout << "Testing activation functions: " << std::endl;
 
     Eigen::MatrixXd a{      // construct a 2x2 matrix
@@ -106,6 +106,8 @@ void testNN()
 
 int main() { //Neural Networking Testing 
     testNN();
+    testActivation();
+    testConvs();
 
     while (true) {}; //loop nothing, keeps window open
 
