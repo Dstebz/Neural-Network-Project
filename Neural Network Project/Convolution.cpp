@@ -1,5 +1,3 @@
-
-//#include "ActivationFunction.h"
 #include "Convolution.h"
 #include <Eigen>
 

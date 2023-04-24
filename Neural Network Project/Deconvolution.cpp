@@ -1,7 +1,5 @@
 
 #include "Deconvolution.h"
-#include "ActivationFunction.h"
-
 #include <Eigen>
 
 DeconvolutionLayer::DeconvolutionLayer() {}; //Empty / default constructor

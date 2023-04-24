@@ -61,7 +61,7 @@ double PoolingLayer::global_pool(Eigen::MatrixXd input, std::string global_pool_
 		ans = input.mean();
 	}
 	else {
-		std::cout << "invalid pooling type, please enter 'max', 'min' or 'avg'" << std::endl;
+		throw "invalid pooling type, please enter 'max', 'min' or 'avg'" << std::endl;
 	}
 
 	return ans;				//should return a single value
