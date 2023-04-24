@@ -112,7 +112,7 @@ Eigen::MatrixXd PoolingLayer::Run(Eigen::MatrixXd input) {
 		break;
 
 	default:
-		throw std::exception("invalid pooling type, please enter 'max', 'global' or 'avg' into parameters");
+		throw std::exception("invalid pooling type, please enter 'max', 'global_[max/min]' or 'avg' into parameters");
 	}
 	return output;
 }
