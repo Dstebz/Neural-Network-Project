@@ -19,15 +19,15 @@ ConvolutionLayer::ConvolutionLayer(C_Parameters params) {
 
 
 //methods
-C_Parameters ConvolutionLayer::getParameters() {
+const C_Parameters ConvolutionLayer::getParameters() {
 	return this->parameters;
-}
+};
 void ConvolutionLayer::setParameters(C_Parameters params) {
 	this->parameters = params;
-}
+};
 Eigen::MatrixXd ConvolutionLayer::getKernel() {
 	return this->kernel;
-}
+};
 void ConvolutionLayer::setKernel(Eigen::MatrixXd kernel) {
 	this->kernel = kernel;
 }

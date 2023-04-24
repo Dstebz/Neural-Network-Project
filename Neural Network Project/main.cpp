@@ -1,12 +1,19 @@
 
 #include <iostream>
+
 #include "ActivationFunction.h"
 
+#include "Convolution.h"
+#include "Deconvolution.h"
+#include "FullyConnected.h"
+#include "Pooling.h"
+
+/*
 Eigen::MatrixXd a{      // construct a 2x2 matrix
       {-3,-0.4 },     // first row
       {0.2,2}      // second row
 };
-
+*/
 /*
 int main() {
 	std::cout << a << std::endl;
@@ -46,7 +53,32 @@ int main() {
 }
 */
 
-int main() { //Neural Networking Testing
-    std::cout << "hello";
-    return 0;
+
+void testConvs()
+{
+    ConvolutionLayer conv1;
+    C_Parameters params{ 1,2,3,4,5 };
+    ConvolutionLayer conv2(params);
+
+    std::cout << "conv1 parameters: " << std::endl;
+    std::cout << conv1.getParameters().stride << std::endl;
+    std::cout << conv1.getParameters().padding << std::endl;
+    std::cout << conv1.getParameters().kernelSize << std::endl;
+
+    std::cout << "conv2 parameters:" << std::endl;
+    std::cout << conv2.getParameters().stride << std::endl;
+    std::cout << conv2.getParameters().padding << std::endl;
+
+
+}
+
+void testDeconv()
+{
+	DeconvolutionLayer deconv1;
+
+}
+
+int main() { //Neural Networking Testing 
+    
+    while (true) {}; //loop nothing, keeps window open
 }

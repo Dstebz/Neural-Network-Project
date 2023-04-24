@@ -32,7 +32,7 @@ public:
 
 	//methods
 	Eigen::MatrixXd Run(Eigen::MatrixXd input); //returns dynamic size array of doubles
-	C_Parameters getParameters(); 
+	const C_Parameters getParameters(); 
 	void setParameters(C_Parameters params);
 	void setKernel(Eigen::MatrixXd kernel);
 	Eigen::MatrixXd getKernel();
