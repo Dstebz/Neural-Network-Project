@@ -2,12 +2,6 @@
 
 #include "Layer.h"
 
-#include "Convolution.h"
-#include "Deconvolution.h"
-#include "FullyConnected.h"
-#include "Pooling.h"
-
-
 #include <Eigen>
 
 

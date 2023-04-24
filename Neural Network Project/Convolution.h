@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Layer.h"
-#include "ActivationFunction.h"
 #include <Eigen>
 
 struct C_Parameters {
