@@ -38,7 +38,7 @@ public:
 	~NeuralNetwork();
 
 	//methods
-	Eigen::MatrixXd Run();
+	Eigen::MatrixXd NeuralNetwork::Run(Eigen::MatrixXd input);
 
 	NN_Parameters getParameters();
 	void setParameters(NN_Parameters);
