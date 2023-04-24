@@ -70,13 +70,13 @@ void testConvs()
     std::cout << conv2.getParameters().padding << std::endl;
 
 
-}
+};
 
 void testDeconv()
 {
-	DeconvolutionLayer deconv1;
+    DeconvolutionLayer deconv1;
 
-}
+};
 
 int main() { //Neural Networking Testing 
     

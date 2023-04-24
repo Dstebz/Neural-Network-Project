@@ -56,6 +56,12 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ExternalIncludePath>C:\Users\Daniel\Documents\C++ External Libraries\libtorch\include;C:\Users\Daniel\Documents\C++ External Libraries\libtorch\include\torch\csrc\api\include;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ExternalIncludePath>C:\Users\Daniel\Documents\C++ External Libraries\libtorch\include;C:\Users\Daniel\Documents\C++ External Libraries\libtorch\include\torch\csrc\api\include;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>libtorch\include;libtorch\include\torch\csrc\api\include;;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -75,6 +81,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NOMINMAX;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ConformanceMode>false</ConformanceMode>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NOMINMAX;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -89,7 +96,8 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message></Message>
+      <Message>
+      </Message>
       <Command>setlocal
 xcopy \libtorch\lib C:\Users\Daniel\OneDrive - University of Strathclyde\EEE\273\Group Project\Daniel Code live copy\Neural Network Project\Libtorch comparison\x64\Debug /D /Y
 if %errorlevel% neq 0 goto :cmEnd
@@ -101,8 +109,8 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>libtorch\lib\c10.lib;libtorch\lib\torch.lib;libtorch\lib\torch_cpu.lib;;;;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>torch_cpu.lib;c10.lib;torch.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Daniel\Documents\C++ External Libraries\libtorch\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -133,6 +141,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
+      <ConformanceMode>false</ConformanceMode>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;NOMINMAX;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -147,7 +156,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message></Message>
+      <Message>
+      </Message>
       <Command>setlocal
 xcopy C:\Users\Daniel\Documents\GitHub\Neural-Network-Project\Libtorch CPU\libtorch\lib C:\Users\Daniel\OneDrive - University of Strathclyde\EEE\273\Group Project\Daniel Code live copy\Neural Network Project\Libtorch comparison\x64\Release /D /Y
 if %errorlevel% neq 0 goto :cmEnd
@@ -159,8 +169,8 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>C:\Users\Daniel\Documents\GitHub\Neural-Network-Project\Libtorch CPU\libtorch\lib\c10.lib;C:\Users\Daniel\Documents\GitHub\Neural-Network-Project\Libtorch CPU\libtorch\lib\torch.lib;C:\Users\Daniel\Documents\GitHub\Neural-Network-Project\Libtorch CPU\libtorch\lib\torch_cpu.lib;;;;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>torch_cpu.lib;c10.lib;torch.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Daniel\Documents\C++ External Libraries\libtorch\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
