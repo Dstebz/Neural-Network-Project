@@ -35,10 +35,17 @@ Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) {
 	int outputX = (input.rows() - 1) * this->parameters.stride + this->parameters.kernelSize - 2 * this->parameters.padding;
 	int outputY = (input.cols() - 1) * this->parameters.stride + this->parameters.kernelSize - 2 * this->parameters.padding;
 	Eigen::MatrixXd output = Eigen::MatrixXd::Zero(outputX, outputY);
+	//adding padding to input
+	Eigen::MatrixXd paddedinput = Eigen::MatrixXd::Zero(input.rows() + 2 * this->parameters.padding,
+		input.cols() + 2 * this->parameters.padding);
+	paddedinput.block(this->parameters.padding,
+		this->parameters.padding,
+		input.rows(),
+		input.cols()) = input;
 
 	for (int i = 0; i < input.rows(); i++) {
 		for (int j = 0; j < input.cols(); j++) {
-			output.block(i * this->parameters.stride, j * this->parameters.stride, this->parameters.kernelSize, this->parameters.kernelSize) += input(i, j) * this->kernel;
+			output.block(i * this->parameters.stride, j * this->parameters.stride, this->parameters.kernelSize, this->parameters.kernelSize) += paddedinput(i, j) * this->kernel;
 		}
 	}
 	return output;
