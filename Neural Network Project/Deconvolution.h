@@ -18,7 +18,7 @@ struct DC_Parameters {
 	int inputChannels = 1;
 	int outputChannels = 1;
 };
-class DeconvolutionLayer : BaseLayer {
+class DeconvolutionLayer : public BaseLayer {
 private:
 
 	DC_Parameters parameters;

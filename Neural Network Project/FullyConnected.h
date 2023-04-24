@@ -20,7 +20,7 @@ struct FC_Parameters {		//need flattening at this point
 
 //Fully Connected Parameters
 
-class FullyConnectedLayer : BaseLayer {
+class FullyConnectedLayer : public BaseLayer {
 private:
 	
 	FC_Parameters parameters;

@@ -11,6 +11,7 @@
 #include <Eigen>
 #include <variant>
 #include <iterator>
+#include <iostream>
 
 std::variant<C_Parameters, DC_Parameters, FC_Parameters, PL_Parameters> Parameters;
 
@@ -52,6 +53,7 @@ Eigen::MatrixXd NeuralNetwork::Run(Eigen::MatrixXd const input) {
 		}
 		catch (const std::exception&)
 		{
+			std::cout << "Error: Layer type not recognized" << std::endl;
 		}
 
 	};
@@ -65,19 +67,23 @@ NN_Parameters NeuralNetwork::getParameters() {
 	return this->parameters;
 };
 
-void NeuralNetwork::setParameters(NN_Parameters params) {
+void NeuralNetwork::setParameters(NN_Parameters const params) {
 	//Sets the parameters of the neural network
 
 	this->parameters = params;
 };
 
-void NeuralNetwork::addLayer(BaseLayer layer, int index) {
+void NeuralNetwork::addLayer(std::shared_ptr<BaseLayer> const layer) {
+	//Adds a layer to the neural network
+	this->hiddenLayers.push_back(layer);
+};
+void NeuralNetwork::addLayer(std::shared_ptr<BaseLayer> const layer, int const index) {
 	//Adds a layer to the neural network
 	auto it = this->hiddenLayers.begin(); //.insert requires an iterator
-	this->hiddenLayers.insert(std::next(it, index), std::make_shared<BaseLayer>(layer)); //Update to insert
+	this->hiddenLayers.insert(std::next(it, index), layer); //Update to insert
 };
 
-void NeuralNetwork::removeLayer(int index) {
+void NeuralNetwork::removeLayer(int const index) {
 	//Removes a layer from the neural network
 	auto it = this->hiddenLayers.begin(); //.erase requires an iterator
 	this->hiddenLayers.erase(std::next(it, index)); //Update to erase

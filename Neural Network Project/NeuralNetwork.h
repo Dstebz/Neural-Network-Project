@@ -38,12 +38,13 @@ public:
 	~NeuralNetwork();
 
 	//methods
-	Eigen::MatrixXd NeuralNetwork::Run(Eigen::MatrixXd input);
+	Eigen::MatrixXd Run(Eigen::MatrixXd input);
 
 	NN_Parameters getParameters();
 	void setParameters(NN_Parameters);
 
-	void addLayer(BaseLayer layer, int index);
+	void addLayer(std::shared_ptr<BaseLayer> layer, int index);
+	void addLayer(std::shared_ptr<BaseLayer> layer);
 	void removeLayer(int index);
 	std::list<std::shared_ptr<BaseLayer>> getLayers();
 

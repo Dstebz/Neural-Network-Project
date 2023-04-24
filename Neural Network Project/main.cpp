@@ -7,6 +7,7 @@
 #include "Deconvolution.h"
 #include "FullyConnected.h"
 #include "Pooling.h"
+#include "NeuralNetwork.h"
 
 /*
 Eigen::MatrixXd a{      // construct a 2x2 matrix
@@ -78,7 +79,21 @@ void testDeconv()
 
 };
 
+void testNN()
+{
+	NeuralNetwork nn;
+	NN_Parameters params{ 2,3,2 };
+	nn.setParameters(params);
+	nn.addLayer(std::shared_ptr<FullyConnectedLayer>(), 0);
+	nn.addLayer(std::shared_ptr<PoolingLayer>(), 1);
+    nn.addLayer(std::shared_ptr<ConvolutionLayer>());
+	std::cout << nn.getLayers().size() << std::endl;
+
+
+
+}
+
 int main() { //Neural Networking Testing 
-    
+    testNN();
     while (true) {}; //loop nothing, keeps window open
 }

@@ -13,7 +13,7 @@ struct C_Parameters {
 };
 
 
-class ConvolutionLayer : BaseLayer {
+class ConvolutionLayer : public BaseLayer {
 private:
 	
 	

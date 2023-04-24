@@ -17,7 +17,7 @@ struct PL_Parameters : PL_Parameters_Default {
 	int stride;
 };
 
-class PoolingLayer : BaseLayer {		//pooling layer used to reduce dimension of feature map, reducing number of parameters to learn...
+class PoolingLayer : public BaseLayer {		//pooling layer used to reduce dimension of feature map, reducing number of parameters to learn...
 private:							//max pooling used to capture most dominant aspects of feature map (i.e. will choose largest value in quadrant of matrix)
 	
 	
