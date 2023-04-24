@@ -45,6 +45,9 @@
     <ClCompile Include="Pooling.cpp">
       <Filter>Resource Files\Layers</Filter>
     </ClCompile>
+    <ClCompile Include="ActivationLayer.cpp">
+      <Filter>Resource Files\Layers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NeuralNetwork.h">
@@ -67,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="ActivationFunction.h">
       <Filter>Header Files\Activation Function</Filter>
+    </ClInclude>
+    <ClInclude Include="ActivationLayer.h">
+      <Filter>Header Files\Layer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

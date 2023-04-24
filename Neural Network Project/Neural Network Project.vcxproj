@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActivationLayer.cpp" />
     <ClCompile Include="Convolution.cpp" />
     <ClCompile Include="Deconvolution.cpp" />
     <ClCompile Include="FullyConnected.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="Pooling.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActivationLayer.h" />
     <ClInclude Include="Convolution.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>

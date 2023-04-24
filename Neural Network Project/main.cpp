@@ -87,6 +87,7 @@ void testNN()
 	nn.addLayer(std::shared_ptr<FullyConnectedLayer>(), 0);
 	nn.addLayer(std::shared_ptr<PoolingLayer>(), 1);
     nn.addLayer(std::shared_ptr<ConvolutionLayer>());
+	nn.addLayer(std::shared_ptr<DeconvolutionLayer>());
 	std::cout << nn.getLayers().size() << std::endl;
 
 
