@@ -87,10 +87,33 @@ PoolingLayer::~PoolingLayer() = default; //Destructor
 
 
 Eigen::MatrixXd PoolingLayer::Run(Eigen::MatrixXd input) {
-	//using max pooling
-	Eigen::MatrixXd output;
-	output = max_pool(input, this->parameters.filter, this->parameters.stride);
 
+	Eigen::MatrixXd output; //output matrix
+
+	//switch statement to determine which pooling method to use
+	switch (this->parameters.pooling_type) {
+	case "max":
+		output = max_pool(input, this->parameters.filter, this->parameters.stride);
+		break;
+	case "avg":
+		output = avg_pool(input, this->parameters.filter, this->parameters.stride);
+		break;
+	case "global_max":
+		Eigen::MatrixXd maxPooled <- global_pool(input, "max");
+		output = maxPooled;
+		break;
+	case "global_min":
+		Eigen::MatrixXd minPooled < -global_pool(input, "min");
+		output = minPooled;
+		break;
+	case "global_avg":
+		Eigen::MatrixXd avgPooled < global_pool(input, "avg");
+		output = avgPooled;
+		break;
+
+	default:
+		throw std::exception("invalid pooling type, please enter 'max', 'global' or 'avg' into parameters");
+	}
 	return output;
 }
 

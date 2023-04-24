@@ -2,19 +2,15 @@
 
 #include "Layer.h"
 #include <Eigen>
+#include <string>
 
-
-struct PL_Parameters_Default {
+struct PL_Parameters {
 	int filter = 1;
 	int output_channels = 1;
 	int input_channels = 1;
 	int stride = 1;
-};
-struct PL_Parameters : PL_Parameters_Default {
-	int filter;
-	int output_channels;
-	int input_channels;
-	int stride;
+	string pooling_type = "max";
+
 };
 
 class PoolingLayer : public BaseLayer {		//pooling layer used to reduce dimension of feature map, reducing number of parameters to learn...
