@@ -36,9 +36,21 @@ Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
 	
 	Eigen::MatrixXd output = Eigen::MatrixXd::Zero(outputDimensionX, outputDimensionY);
 
+	//adding padding to input
+	Eigen::MatrixXd paddedinput = Eigen::MatrixXd::Zero(input.rows() + 2 * this->parameters.padding,
+		input.cols() + 2 * this->parameters.padding);
+	paddedinput.block(this->parameters.padding,
+		this->parameters.padding,
+		input.rows(),
+		input.cols()) = input;
+
+
 	for (int i = 0; i < outputDimensionX; i++) {
 		for (int j = 0; j < outputDimensionY; j++) {
-			output(i, j) = (input.block(i * this->parameters.stride, j * this->parameters.stride, this->parameters.kernelSize, this->parameters.kernelSize) //start at i,j, take kernelSize x kernelSize block
+			output(i, j) = (paddedinput.block(i * this->parameters.stride,
+				j * this->parameters.stride,
+				this->parameters.kernelSize,
+				this->parameters.kernelSize) //start at i,j, take kernelSize x kernelSize block
 				.cwiseProduct(this->kernel)).sum(); //get sum of elementwise product
 		}
 	}
