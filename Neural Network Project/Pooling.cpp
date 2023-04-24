@@ -1,7 +1,7 @@
 #include "pooling.h"
 
 #include <Eigen>					
-#
+#include <string>
 
 	//don't need activation function for pooling layer due to MAX and AVG pooling methods - no need for weights in this layer
 
@@ -91,29 +91,39 @@ Eigen::MatrixXd PoolingLayer::Run(Eigen::MatrixXd input) {
 	Eigen::MatrixXd output; //output matrix
 
 	//switch statement to determine which pooling method to use
-	switch (this->parameters.pooling_type) {
-	case "max":
-		output = max_pool(input, this->parameters.filter, this->parameters.stride);
-		break;
-	case "avg":
-		output = avg_pool(input, this->parameters.filter, this->parameters.stride);
-		break;
-	case "global_max":
-		Eigen::MatrixXd maxPooled <- global_pool(input, "max");
-		output = maxPooled;
-		break;
-	case "global_min":
-		Eigen::MatrixXd minPooled < -global_pool(input, "min");
-		output = minPooled;
-		break;
-	case "global_avg":
-		Eigen::MatrixXd avgPooled < global_pool(input, "avg");
-		output = avgPooled;
-		break;
+	std::string pooling_type = this->parameters.pooling_type;
 
-	default:
-		throw std::exception("invalid pooling type, please enter 'max', 'global_[max/min]' or 'avg' into parameters");
+	if (pooling_type == "max")
+	{
+		output = max_pool(input, this->parameters.filter, this->parameters.stride);
 	}
+	else if (pooling_type == "avg")
+	{
+		output = avg_pool(input, this->parameters.filter, this->parameters.stride);
+	}
+	else if (pooling_type == "global_max")
+	{
+		Eigen::MatrixXd maxPooled(1, 1);
+		maxPooled(0, 0) = global_pool(input, "max");
+		output = maxPooled;
+	}
+	else if (pooling_type == "global_min")
+	{
+		Eigen::MatrixXd minPooled(1, 1);
+		minPooled(0, 0) = global_pool(input, "min");
+		output = minPooled;
+	}
+	else if (pooling_type == "global_avg")
+	{
+		Eigen::MatrixXd avgPooled(1, 1);
+		avgPooled(0, 0) = global_pool(input, "avg");
+		output = avgPooled;
+	}
+	else
+	{
+		throw std::exception("invalid pooling type, please enter 'max', 'global_[max/min]' or 'avg'");
+	}
+	
 	return output;
-}
+};
 

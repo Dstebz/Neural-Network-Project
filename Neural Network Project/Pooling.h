@@ -9,7 +9,7 @@ struct PL_Parameters {
 	int output_channels = 1;
 	int input_channels = 1;
 	int stride = 1;
-	string pooling_type = "max";
+	std::string pooling_type = "max";
 
 };
 
