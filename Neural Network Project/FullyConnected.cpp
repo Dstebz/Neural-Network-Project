@@ -44,6 +44,6 @@ FullyConnectedLayer::~FullyConnectedLayer() {	//default destructor
 Eigen::MatrixXd FullyConnectedLayer::Run(Eigen::MatrixXd input) {
 	Eigen::MatrixXd ans1, ans2;
 	ans1 = input * this->parameters.weight;
-	ans2 = softmax(ans2);
+	ans2 = softmax(ans1);		// i changed this from ans2 to ans1
 	return ans2;
 };
