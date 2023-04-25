@@ -204,14 +204,6 @@ void testDeconv()
 	std::cout << "Output:" << std::endl;
 	std::cout << deconv5.Run(testInput) << std::endl;
 
-
-
-
-
-
-
-
-    
     return;
 };
 
