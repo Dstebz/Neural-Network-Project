@@ -31,17 +31,17 @@ void DeconvolutionLayer::setKernel(Eigen::MatrixXd kernel) {
 };
 
 
-Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) {
+Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) { //algorithms based off beyond data science article, see report for citation
 	int outputX = (input.rows() - 1) * this->parameters.stride + this->parameters.kernelSize - 2 * this->parameters.padding;
-	int outputY = (input.cols() - 1) * this->parameters.stride + this->parameters.kernelSize - 2 * this->parameters.padding;
-	Eigen::MatrixXd output = Eigen::MatrixXd::Zero(outputX, outputY);
-	//adding padding to input
-	Eigen::MatrixXd paddedinput = Eigen::MatrixXd::Zero(input.rows() + 2 * this->parameters.padding,
-		input.cols() + 2 * this->parameters.padding);
-	paddedinput.block(this->parameters.padding,
-		this->parameters.padding,
-		input.rows(),
-		input.cols()) = input;
+	int outputY = outputX;
+
+	int paddedDimensions = (input.rows()*this->parameters.stride-1) + 2 * this->parameters.padding;
+	Eigen::MatrixXd paddedinput = Eigen::MatrixXd::Zero(paddedDimensions, paddedDimensions);
+	for (int i = 0; i < input.rows(); i++) {
+		for (int j = 0; j < input.cols(); j++) {
+			paddedinput(i + this->parameters.padding, j + this->parameters.padding) = input(i, j);
+		}
+	}
 
 	for (int i = 0; i < input.rows(); i++) {
 		for (int j = 0; j < input.cols(); j++) {
@@ -49,5 +49,7 @@ Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) {
 		}
 	}
 	return output;
+
+
 };
 
