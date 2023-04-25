@@ -229,16 +229,59 @@ void testNN()
 	nn.removeLayer(0); //removes first layer
 	std::cout << "Number of layers: (Expect 3)" << std::endl;
 	std::cout << nn.getLayers().size() << std::endl; //should be 3
+    std::list<std::shared_ptr<BaseLayer>> LayerList = nn.getLayers();
 
+    std::cout << std::endl << "Testing runs!" << std::endl;
+    NeuralNetwork nn2;
 
-    return;
+    std::cout << "Adding One Convolution layer" << std::endl;
+    ConvolutionLayer conv1({1,1,3,0,0});
+    Eigen::MatrixXd verticalFilter = Eigen::MatrixXd::Zero(3, 3);
+    verticalFilter << -1,-1,-1,
+					  -1,8,-1,
+					  -1,-1,-1;
+    conv1.setKernel(verticalFilter);
+    nn2.addLayer(std::make_shared<ConvolutionLayer>(conv1));
+
+    Eigen::MatrixXd input = Eigen::MatrixXd::Zero(5, 5);
+    input << 10,0,0,0,10,
+             10,10,0,0,10,
+			 10,0,10,0,10,
+			 10,0,0,10,10,
+			 10,0,0,0,10;
+
+    std::cout << "Kernel:" << std::endl;
+    std::cout << verticalFilter << std::endl;
+    std::cout << std::endl << "Input:" << std::endl;
+    std::cout << input << std::endl;
+
+    std::cout << std::endl << "NN output:" << std::endl;
+    std::cout << nn2.Run(input) << std::endl;
+
+    std::cout << std::endl << "Chaining" << std::endl;
+    std::cout << "Same Convolution -> RELU Activation -> avg Pooling" << std::endl;
+
+	ActivationLayer relu(reLU); //activation layer
+	PoolingLayer avgPool({3,2,"avg"}); //pooling layer
+
+	NeuralNetwork nn3; //new neural network
+    nn3.addLayer(std::make_shared<ConvolutionLayer>(conv1));
+	nn3.addLayer(std::make_shared<ActivationLayer>(relu));
+    nn3.addLayer(std::make_shared<PoolingLayer>(avgPool));
+
+	nn3.Run(input);
+
+	std::cout << std::endl << "Chained NN output:" << std::endl;
+	std::cout << nn3.Run(input) << std::endl;
+    
+	return;
 }
 
 int main() { //Neural Networking Testing 
-    //testNN();
+    testNN();
     //testActivation();
     //testConvs();
-    testDeconv();
+    //testDeconv();
 
     std::cout << std::endl << "###########" << std::endl;
     std::cout << "END TESTING. ENTER ANYTHING TO EXIT" << std::endl;
