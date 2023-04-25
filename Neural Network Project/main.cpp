@@ -278,15 +278,43 @@ void testNN()
 }
 
 int main() { //Neural Networking Testing 
-    testNN();
-    //testActivation();
-    //testConvs();
-    //testDeconv();
-
-    std::cout << std::endl << "###########" << std::endl;
-    std::cout << "END TESTING. ENTER ANYTHING TO EXIT" << std::endl;
-    std::cout << std::endl << "###########" << std::endl;
-    char in;
-    std::cin >> in;
-    return 0;
+    
+    while(true)
+    {
+		std::cout << std::endl << "###########" << std::endl;
+		std::cout << "Enter a number to test a specific function" << std::endl;
+		std::cout << "1: Neural Network" << std::endl;
+		std::cout << "2: Activation Layer" << std::endl;
+		std::cout << "3: Convolution Layer" << std::endl;
+		std::cout << "4: Deconvolution Layer" << std::endl;
+		std::cout << "5: Pooling Layer" << std::endl;
+		std::cout << "6: Exit" << std::endl;
+		std::cout << std::endl << "###########" << std::endl;
+		int in;
+		std::cin >> in;
+		switch (in)
+		{
+		case 1:
+			testNN();
+			break;
+		case 2:
+			testActivation();
+			break;
+		case 3:
+			testConvs();
+			break;
+		case 4:
+			testDeconv();
+			break;
+		case 5:
+			//testPooling();
+			break;
+		case 6:
+			return 0; //break loop
+		default:
+			std::cout << "Invalid input" << std::endl;
+			break;
+		}
+    }
+    
 }
