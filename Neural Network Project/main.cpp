@@ -17,6 +17,8 @@
 
 //testing of activation functions
 void testActivation() {
+    std::cout << std::endl << "-------" << std::endl;
+
     std::cout << "Testing activation functions: " << std::endl;
 
     Eigen::MatrixXd a{      // construct a 2x2 matrix
@@ -64,6 +66,7 @@ void testActivation() {
 //testing convolution layer
 void testConvs()
 {
+    std::cout << std::endl << "-------" << std::endl;
 	//testing parameters
     std::cout << "Testing convolution layers: " << std::endl;
     ConvolutionLayer conv1;
@@ -144,13 +147,66 @@ void testConvs()
 //testing deconvolution layer
 void testDeconv()
 {
+    std::cout << std::endl << "-------" << std::endl;
+    std::cout << "Testing Deconvolution" << std::endl;
+
+    std::cout << "Testing Parameters" << std::endl;
     DeconvolutionLayer deconv1;
+    DeconvolutionLayer deconv2({ 1,1,2,0,0 }) ;
+    DeconvolutionLayer deconv3(
+        { 1, 1, 4, 0, 0 },
+        Eigen::MatrixXd::Constant(4, 4, 2));
+
+    //Testing Constructors
+    std::cout << std::endl << "Testing Constructors" << std::endl;
+
+    std::cout << std::endl << "Default:" << std::endl;
+    std::cout << "Kernel" << std::endl;
+    std::cout << deconv1.getKernel() << std::endl;
+    std::cout << "Kernel Size Parameter: " << std::endl;
+    std::cout << deconv1.getParameters().kernelSize << std::endl;
+
+    std::cout << std::endl << "Parameters only:" << std::endl;
+    std::cout << "Kernel" << std::endl;
+    std::cout << deconv2.getKernel() << std::endl;
+    std::cout << "Kernel Size Parameter: " << std::endl;
+    std::cout << deconv2.getParameters().kernelSize << std::endl;
+
+    std::cout << std::endl << "Parameters and Kernel:" << std::endl;
+    std::cout << "Kernel" << std::endl;
+    std::cout << deconv3.getKernel() << std::endl;
+    std::cout << "Kernel Size Parameter: " << std::endl;
+    std::cout << deconv3.getParameters().kernelSize << std::endl;
+
+
+    //testing setters
+    std::cout << std::endl << "Testing Setters" << std::endl;
+
+    DeconvolutionLayer deconv4;
+    std::cout << "Before kernel size parameter: " << deconv4.getParameters().kernelSize << std::endl;
+    deconv4.setParameters({ 1,1,4,0,0 });
+    std::cout << "After size parameter: " << deconv4.getParameters().kernelSize << std::endl;
+
+    std::cout << "Before Kernel: " << std::endl;
+    std::cout << deconv4.getKernel() << std::endl;
+
+    Eigen::MatrixXd newKernel = Eigen::MatrixXd::Constant(4, 4, 2.6);
+    deconv4.setKernel(newKernel);
+    std::cout << std::endl << "After Kernel:" << std::endl;
+    std::cout << deconv4.getKernel() << std::endl;
+
+
+
+
+
+    
     return;
 };
 
 //testing Neuralnetwork object
 void testNN()
 {
+    std::cout << std::endl << "-------" << std::endl;
 	std::cout << "Testing Neural Network: " << std::endl;
 
 	NeuralNetwork nn;
@@ -175,11 +231,14 @@ void testNN()
 }
 
 int main() { //Neural Networking Testing 
-    testNN();
-    testActivation();
-    testConvs();
+    //testNN();
+    //testActivation();
+    //testConvs();
+    testDeconv();
 
+    std::cout << std::endl << "###########" << std::endl;
     std::cout << "END TESTING. ENTER ANYTHING TO EXIT" << std::endl;
+    std::cout << std::endl << "###########" << std::endl;
     char in;
     std::cin >> in;
     return 0;

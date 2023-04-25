@@ -2,7 +2,10 @@
 #include "Deconvolution.h"
 #include <Eigen>
 
-DeconvolutionLayer::DeconvolutionLayer() {}; //Empty / default constructor
+DeconvolutionLayer::DeconvolutionLayer()
+{
+	this->kernel = Eigen::MatrixXd::Constant(this->parameters.kernelSize, this->parameters.kernelSize, 1);
+}; //Empty / default constructor
 
 DeconvolutionLayer::DeconvolutionLayer(DC_Parameters params) {
 	this->parameters = params;
@@ -39,13 +42,22 @@ Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) { //algorithms ba
 	Eigen::MatrixXd paddedinput = Eigen::MatrixXd::Zero(paddedDimensions, paddedDimensions);
 	for (int i = 0; i < input.rows(); i++) {
 		for (int j = 0; j < input.cols(); j++) {
-			paddedinput(i + this->parameters.padding, j + this->parameters.padding) = input(i, j);
+			paddedinput(i*this->parameters.stride + this->parameters.padding, j* this->parameters.stride + this->parameters.padding) = input(i, j);
 		}
 	}
+	Eigen::MatrixXd output = Eigen::MatrixXd::Zero(outputX, outputY);
 
-	for (int i = 0; i < input.rows(); i++) {
-		for (int j = 0; j < input.cols(); j++) {
-			output.block(i * this->parameters.stride, j * this->parameters.stride, this->parameters.kernelSize, this->parameters.kernelSize) += paddedinput(i, j) * this->kernel;
+
+	//Regular convolution code below
+	int scanLength = paddedinput.rows() - this->parameters.kernelSize + 1; //length of scan
+	for (int i = 0; i < scanLength; i++) {
+		for (int j = 0; j < scanLength; j++) {
+			
+			output(i, j) = (paddedinput.block(i, //stride always 1 for deconvolution
+				j, //stride always 1 for deconvolution
+				this->parameters.kernelSize,
+				this->parameters.kernelSize) //take kernelSize x kernelSize block
+				.cwiseProduct(this->kernel)).sum(); //get sum of elementwise product
 		}
 	}
 	return output;
