@@ -31,8 +31,9 @@ void ConvolutionLayer::setKernel(Eigen::MatrixXd kernel) {
 }
 
 Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
-	int outputDimensionX = (input.rows() -  2 * this->parameters.padding) / this->parameters.stride;
-	int outputDimensionY = (input.cols() - 2 * this->parameters.padding) / this->parameters.stride;
+	int outputDimensionX = ((input.rows() - this->parameters.kernelSize //see report for citing source
+		+ 2 * this->parameters.padding + 1) / this->parameters.stride) + 1; //output dimension x
+	int outputDimensionY = outputDimensionX; //assuming square kernel, stride and output
 	
 	Eigen::MatrixXd output = Eigen::MatrixXd::Zero(outputDimensionX, outputDimensionY);
 
