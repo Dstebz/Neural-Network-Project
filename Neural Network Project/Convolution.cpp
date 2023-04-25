@@ -1,6 +1,6 @@
 #include "Convolution.h"
 #include <Eigen>
-#include <iostream>
+
 
 ConvolutionLayer::~ConvolutionLayer() {
 	//Destructor
