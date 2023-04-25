@@ -17,7 +17,7 @@ private:
 	
 	
 	C_Parameters parameters;
-	Eigen::MatrixXd kernel;
+	Eigen::MatrixXd kernel = Eigen::MatrixXd::Constant(this->parameters.kernelSize, this->parameters.kernelSize, 1);
 
 public:
 	//Convolution parameters

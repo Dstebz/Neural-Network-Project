@@ -1,5 +1,6 @@
 #include "Convolution.h"
 #include <Eigen>
+#include <iostream>
 
 ConvolutionLayer::~ConvolutionLayer() {
 	//Destructor
@@ -46,15 +47,27 @@ Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
 		input.cols() //take input column dimension
 	) = input; //assign input into the padded matrix
 
+	std::cout << "Padded input: " << std::endl << paddedinput << std::endl;
+	std::cout << "Output Dimension: " << outputDimensionX << std::endl;
 
-	for (int i = 0; i < outputDimensionX; i++) {
-		for (int j = 0; j < outputDimensionY; j++) {
-			output(i, j) = (paddedinput.block(i * this->parameters.stride, //start at i*stride, j*stride (top left corner of kernel)
-				j * this->parameters.stride,
+	int scanLength = (paddedinput.rows() - this->parameters.kernelSize) / this->parameters.stride + 1; //length of scan
+	for (int i = 0; i < scanLength; i++) {
+		for (int j = 0; j < scanLength; j++) {
+			std::cout << "I: " << i << " J: " << j << " I*stride: " << i * this->parameters.stride << " J*stride: " << j * this->parameters.stride << std::endl;
+			output(i, j) = (paddedinput.block(i*this->parameters.stride + this->parameters.padding, //start at i*stride, j*stride (top left corner of kernel)
+				j * this->parameters.stride + this->parameters.padding,
 				this->parameters.kernelSize,
 				this->parameters.kernelSize) //take kernelSize x kernelSize block
 				.cwiseProduct(this->kernel)).sum(); //get sum of elementwise product
 		}
 	}
-	return output;
+
+	return output.block( //return output - extra padding
+		0, //start at 0,0
+		0,
+		outputDimensionX, //take outputDimensionX rows
+		outputDimensionY //take outputDimensionY columns
+	);
+		
+		
 }
