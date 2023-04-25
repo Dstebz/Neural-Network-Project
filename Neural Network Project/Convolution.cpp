@@ -33,7 +33,7 @@ void ConvolutionLayer::setKernel(Eigen::MatrixXd kernel) {
 
 Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
 	int outputDimensionX = ((input.rows() - this->parameters.kernelSize //see report for citing source
-		+ 2 * this->parameters.padding + 1) / this->parameters.stride) + 1; //output dimension x
+		+ 2 * this->parameters.padding + 1) / this->parameters.stride); //output dimension x
 	int outputDimensionY = outputDimensionX; //assuming square kernel, stride and output
 	
 	Eigen::MatrixXd output = Eigen::MatrixXd::Zero(outputDimensionX, outputDimensionY);
@@ -49,16 +49,20 @@ Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
 
 	std::cout << "Padded input: " << std::endl << paddedinput << std::endl;
 	std::cout << "Output Dimension: " << outputDimensionX << std::endl;
+	std::cout << "Kernel: " << std::endl << this->kernel << std::endl;
 
-	int scanLength = (paddedinput.rows() - this->parameters.kernelSize) / this->parameters.stride + 1; //length of scan
+	int scanLength = paddedinput.rows()-this->parameters.kernelSize+1; //length of scan
+	//std::cout << "ScanLength: " << scanLength << std::endl;
+
 	for (int i = 0; i < scanLength; i++) {
 		for (int j = 0; j < scanLength; j++) {
-			std::cout << "I: " << i << " J: " << j << " I*stride: " << i * this->parameters.stride << " J*stride: " << j * this->parameters.stride << std::endl;
-			output(i, j) = (paddedinput.block(i*this->parameters.stride + this->parameters.padding, //start at i*stride, j*stride (top left corner of kernel)
-				j * this->parameters.stride + this->parameters.padding,
+			//std::cout << "I: " << i << " J: " << j << " I*stride: " << i * this->parameters.stride << " J*stride: " << j * this->parameters.stride << std::endl;
+			output(i, j) = (paddedinput.block(i*this->parameters.stride, //start at i*stride, j*stride (top left corner of kernel)
+				j * this->parameters.stride,
 				this->parameters.kernelSize,
 				this->parameters.kernelSize) //take kernelSize x kernelSize block
 				.cwiseProduct(this->kernel)).sum(); //get sum of elementwise product
+			//std::cout << "Output: " << output(i, j) << std::endl << std::endl;
 		}
 	}
 

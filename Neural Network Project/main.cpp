@@ -109,6 +109,21 @@ void testConvs()
     std::cout << convolved << std::endl;
     std::cout << "Expect 4x4 of 2s" << std::endl;
 
+    Eigen::MatrixXd blurKernel = Eigen::MatrixXd::Constant(2, 2, 0.5);
+    Eigen::MatrixXd blurTest = Eigen::MatrixXd::Zero(4, 4);
+    blurTest << 0,2,0,2,
+				2,0,2,0,
+				0,2,0,2,
+				2,0,2,0;
+    
+
+    conv3.setKernel(blurKernel);
+    conv3.setParameters({ 1,1,2,0,0 });
+    convolved = conv3.Run(blurTest);
+    std::cout << convolved << std::endl;
+    std::cout << "Expect blurred 2 matrix.";
+
+
 
 
 
