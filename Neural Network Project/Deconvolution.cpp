@@ -53,7 +53,5 @@ Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) { //algorithms ba
 	}
 	
 	return Output; //returns completed output matrix
-
-
 };
 
