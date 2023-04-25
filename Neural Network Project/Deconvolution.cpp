@@ -1,6 +1,7 @@
 
 #include "Deconvolution.h"
 #include <Eigen>
+#include <iostream>
 
 DeconvolutionLayer::DeconvolutionLayer()
 {
@@ -38,11 +39,13 @@ Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) { //algorithms ba
 	int outputX = (input.rows() - 1) * this->parameters.stride + this->parameters.kernelSize - 2 * this->parameters.padding;
 	int outputY = outputX;
 
-	int paddedDimensions = (input.rows()*this->parameters.stride-1) + 2 * this->parameters.padding;
+	int strideDimensions = input.rows()+(input.rows() - 1) * this->parameters.stride; //dimensions of matrix after stride
+	int paddedDimensions = strideDimensions + 2 * this->parameters.padding; //dimensions of matrix after padding
 	Eigen::MatrixXd paddedinput = Eigen::MatrixXd::Zero(paddedDimensions, paddedDimensions);
+
 	for (int i = 0; i < input.rows(); i++) {
 		for (int j = 0; j < input.cols(); j++) {
-			paddedinput(i*this->parameters.stride + this->parameters.padding, j* this->parameters.stride + this->parameters.padding) = input(i, j);
+			paddedinput(i*(this->parameters.stride+1) + this->parameters.padding, j * (this->parameters.stride + 1) + this->parameters.padding) = input(i, j);
 		}
 	}
 	Eigen::MatrixXd output = Eigen::MatrixXd::Zero(outputX, outputY);
@@ -50,8 +53,17 @@ Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) { //algorithms ba
 
 	//Regular convolution code below
 	int scanLength = paddedinput.rows() - this->parameters.kernelSize + 1; //length of scan
+
+	//debug prints
+	std::cout << "Padding size: " << this->parameters.padding << "\n";
+	std::cout << "scanLength: " << scanLength << "\n";
+	std::cout << "OutputX: " << outputX << "\n";
+	std::cout << "padded dimensions: " << paddedDimensions << "\n";
+	std::cout << "padded input: " << std::endl << paddedinput << "\n";
+
 	for (int i = 0; i < scanLength; i++) {
 		for (int j = 0; j < scanLength; j++) {
+			std::cout << "i: " << i << " j: " << j << "\n";
 			
 			output(i, j) = (paddedinput.block(i, //stride always 1 for deconvolution
 				j, //stride always 1 for deconvolution

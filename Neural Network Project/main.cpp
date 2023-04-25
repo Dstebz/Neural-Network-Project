@@ -133,13 +133,8 @@ void testConvs()
 				1,2,2,2,1,
 				1,1,1,1,0;
     std::cout << expected << std::endl;
+
     
-
-
-
-
-
-
     return;
 
 };
@@ -192,8 +187,25 @@ void testDeconv()
 
     Eigen::MatrixXd newKernel = Eigen::MatrixXd::Constant(4, 4, 2.6);
     deconv4.setKernel(newKernel);
-    std::cout << std::endl << "After Kernel:" << std::endl;
+    std::cout << "After Kernel:" << std::endl;
     std::cout << deconv4.getKernel() << std::endl;
+
+	//testing run
+    std::cout << std::endl << "Testing Run" << std::endl;
+
+	Eigen::MatrixXd testKernel = Eigen::MatrixXd::Constant(2, 2, 1);
+    DeconvolutionLayer deconv5({ 1,1,2,0,0 }, testKernel);
+	Eigen::MatrixXd testInput = Eigen::MatrixXd::Constant(4, 4, 2);
+
+	std::cout << "Input: " << std::endl;
+	std::cout << testInput << std::endl;
+	std::cout << std::endl << "Kernel: " << std::endl;
+	std::cout << testKernel << std::endl;
+	std::cout << "Output:" << std::endl;
+	std::cout << deconv5.Run(testInput) << std::endl;
+
+
+
 
 
 
