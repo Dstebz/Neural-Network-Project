@@ -53,7 +53,7 @@ Eigen::MatrixXd NeuralNetwork::Run(Eigen::MatrixXd const input) {
 		}
 		catch (const std::exception&)
 		{
-			std::cout << "Error: Layer type not recognized" << std::endl;
+			std::cout << "Error: Layer run failed" << std::endl;
 		}
 
 	};
