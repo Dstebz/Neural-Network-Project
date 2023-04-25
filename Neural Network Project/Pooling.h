@@ -6,8 +6,6 @@
 
 struct PL_Parameters {
 	int filter = 1;
-	int output_channels = 1;
-	int input_channels = 1;
 	int stride = 1;
 	std::string pooling_type = "max";
 
