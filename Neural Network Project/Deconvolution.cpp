@@ -39,21 +39,20 @@ Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) { //algorithms ba
 
 	int strideDimensions = (input.rows() - 1) * this->parameters.stride; //dimensions of matrix after stride
 	int paddedDimensions = strideDimensions + 2 * this->parameters.padding; //dimensions of matrix after padding
-	Eigen::MatrixXd Output = Eigen::MatrixXd::Zero(paddedDimensions, paddedDimensions);
+	Eigen::MatrixXd Output = Eigen::MatrixXd::Zero(paddedDimensions, paddedDimensions); //empty output matrix
 
-	
 	for (int i = 0; i < input.rows(); i++) {
 		for (int j = 0; j < input.cols(); j++) {
-			Output.block(
-				i * this->parameters.stride,
+			Output.block(//iterate through input matrix and add to output matrix
+				i * this->parameters.stride,//start at 0,0. Increment in multiples of stride
 				j * this->parameters.stride,
-				this->parameters.kernelSize,
+				this->parameters.kernelSize, //block has same dimensions as kernel
 				this->parameters.kernelSize
-			) += input(i, j) * this->kernel;
+			) += input(i, j) * this->kernel; //multiply input value by kernel and add to output matrix
 		}
 	}
 	
-	return Output;
+	return Output; //returns completed output matrix
 
 
 };
