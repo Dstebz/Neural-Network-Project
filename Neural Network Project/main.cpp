@@ -465,7 +465,7 @@ int main() { //Neural Networking Testing
 			testDeconv();
 			break;
 		case 5:
-			//testPooling();
+			testPool();
 			break;
 		case 6:
 			return 0; //break loop
