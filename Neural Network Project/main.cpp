@@ -277,11 +277,12 @@ void testNN()
 	NeuralNetwork nn3; //new neural network
     nn3.addLayer(std::make_shared<ConvolutionLayer>(conv1));
 	nn3.addLayer(std::make_shared<ActivationLayer>(relu));
+    std::cout << "Conv -> RELU only" << std::endl;
+    std::cout << nn3.Run(input) << std::endl;
+
     nn3.addLayer(std::make_shared<PoolingLayer>(avgPool));
-
-	nn3.Run(input);
-
-	std::cout << std::endl << "Chained NN output:" << std::endl;
+	
+	std::cout << std::endl << "All 3 Chained NN output:" << std::endl;
 	std::cout << nn3.Run(input) << std::endl;
     
 	return;
