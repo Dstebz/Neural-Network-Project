@@ -249,7 +249,7 @@ void testFC() {
     std::cout << "After input channels: " << fc4.getParameters().inputChannels << std::endl;
     std::cout << "After output channels: " << fc4.getParameters().outputChannels << std::endl;
     
-    /*
+    
     //testing run()
     std::cout << std::endl << "Testing Run" << std::endl;
 
@@ -261,9 +261,11 @@ void testFC() {
                         {13,14,15,16} };
     Eigen::MatrixXd op;
 
-    op = fc5.Run(ip);                   //note: doesn't work yet because dimensions of ip matrix is not the same as weights. Need to change.
+    std::cout << "Before Run: " << ip << std::endl;
+
+    op = fc5.Run(ip);                   
     std::cout << "After Run: " << op << std::endl;
-    */
+    
     return;
 }
 
@@ -446,7 +448,8 @@ int main() { //Neural Networking Testing
 		std::cout << "3: Convolution Layer" << std::endl;
 		std::cout << "4: Deconvolution Layer" << std::endl;
 		std::cout << "5: Pooling Layer" << std::endl;
-		std::cout << "6: Exit" << std::endl;
+		std::cout << "6: Fully Connected Layer" << std::endl;
+        std::cout << "7: exit" << std::endl;
 		std::cout << std::endl << "###########" << std::endl;
 		int in;
 		std::cin >> in;
@@ -465,9 +468,12 @@ int main() { //Neural Networking Testing
 			testDeconv();
 			break;
 		case 5:
-			//testPooling();
+			testPool();
 			break;
-		case 6:
+        case 6:
+            testFC();
+            break;
+		case 7:
 			return 0; //break loop
 		default:
 			std::cout << "Invalid input" << std::endl;
