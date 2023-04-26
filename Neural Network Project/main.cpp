@@ -29,21 +29,14 @@ void testActivation() {
     std::cout << "Input: " << std::endl;
 	std::cout << a << std::endl;
 
-    
-
-    std::cout << "sigmoid function: " << std::endl;
-
     std::cout << "\n" << "\n";
-
 
     Eigen::MatrixXd ans1, ans2, ans3, ans4;
 
-    
     ans1 = reLU(a);
     std::cout << "after applying the reLU function: " << std::endl << ans1 << std::endl;
     std::cout << "\n" << "\n";
     
-
     ans2 = tanh(a);
     std::cout << "After applying the tanh function: " << std::endl << ans2 << std::endl;
     std::cout << "\n" << "\n";
@@ -52,7 +45,6 @@ void testActivation() {
     std::cout << "After applying the sigmoid function: " << std::endl << ans3 << std::endl;
     std::cout << "\n" << "\n";
 
-    
     ans4 = softmax(a);
     std::cout << "After applying the softmax function: " << std::endl << ans4 << std::endl;
     std::cout << "\n" << "\n";
@@ -134,12 +126,6 @@ void testConvs()
 				1,1,1,1,0;
     std::cout << expected << std::endl;
     
-
-
-
-
-
-
     return;
 
 };
@@ -195,13 +181,167 @@ void testDeconv()
     std::cout << std::endl << "After Kernel:" << std::endl;
     std::cout << deconv4.getKernel() << std::endl;
 
-
+    
 
 
 
     
     return;
 };
+
+//testing Fully Connected Layer
+void testFC() {
+
+    std::cout << std::endl << "-------" << std::endl;
+    std::cout << "Testing Fully Connected Layer" << std::endl;
+
+    std::cout << "Testing Parameters" << std::endl;
+
+    //creating 2 objects, 1 default, 1 with selected parameters
+    FullyConnectedLayer fc1;
+    FullyConnectedLayer fc2({ 2,2 });        //will need to change the weights. Make a new variable called weight_val or something       
+    //add a new constructor with third parameter for weight elements
+
+    //testing these constructors
+    std::cout << std::endl << "Default Constructor:" << std::endl;
+    std::cout << std::endl << "Input Channels" << std::endl;
+    std::cout << fc1.getParameters().inputChannels << std::endl;
+    std::cout << std::endl << "Output Channels" << std::endl;
+    std::cout << fc1.getParameters().outputChannels << std::endl;
+    std::cout << std::endl << "Weights" << std::endl;
+    std::cout << fc1.getParameters().weights << std::endl;
+
+    std::cout << std::endl << "Parameter Constructor:" << std::endl;
+    std::cout << std::endl << "Input Channels" << std::endl;
+    std::cout << fc2.getParameters().inputChannels << std::endl;
+    std::cout << std::endl << "Output Channels" << std::endl;
+    std::cout << fc2.getParameters().outputChannels << std::endl;
+    std::cout << std::endl << "Weights" << std::endl;
+    std::cout << fc2.getParameters().weights << std::endl;
+
+    //testing setters
+    std::cout << std::endl << "Testing Setters" << std::endl;
+
+    FullyConnectedLayer fc4;    //create object
+    std::cout << "Before input channels: " << fc4.getParameters().inputChannels << std::endl;
+    std::cout << "Before output channels: " << fc4.getParameters().outputChannels << std::endl;
+    fc4.setParameters({ 2,3 });
+    std::cout << "After input channels: " << fc4.getParameters().inputChannels << std::endl;
+    std::cout << "After output channels: " << fc4.getParameters().outputChannels << std::endl;
+    
+    /*
+    //testing run()
+    std::cout << std::endl << "Testing Run" << std::endl;
+
+    FullyConnectedLayer fc5;
+
+    Eigen::MatrixXd ip{ {1,2,3,4},
+                        {5,6,7,8},
+                        {9,10,11,12},
+                        {13,14,15,16} };
+    Eigen::MatrixXd op;
+
+    op = fc5.Run(ip);                   //note: doesn't work yet because dimensions of ip matrix is not the same as weights. Need to change.
+    std::cout << "After Run: " << op << std::endl;
+    */
+    return;
+}
+
+void testPool() {
+
+    std::cout << std::endl << "-------" << std::endl;
+    std::cout << "Testing the Pooling Layer" << std::endl;
+
+    std::cout << "Testing Parameters" << std::endl;
+
+    //creating 3 objects. 1 default, 1 with set parameters and default pooling, 1 with set parameters and set pooling type
+    PoolingLayer pool1;
+    PoolingLayer pool2({ 2,2 });
+    PoolingLayer pool3({ 3,3, "min" });
+
+    //testing these constructors
+    std::cout << std::endl << "Default Constructor:" << std::endl;
+    std::cout << std::endl << "Filter Size (note this is square)" << std::endl;
+    std::cout << pool1.getParameters().filter << std::endl;
+    std::cout << std::endl << "Stride" << std::endl;
+    std::cout << pool1.getParameters().stride << std::endl;
+    std::cout << std::endl << "Pooling Type" << std::endl;
+    std::cout << pool1.getParameters().pooling_type << std::endl;
+
+    std::cout << std::endl << "Parameter Constructor:" << std::endl;
+    std::cout << std::endl << "Filter Size (note this is square)" << std::endl;
+    std::cout << pool2.getParameters().filter << std::endl;
+    std::cout << std::endl << "Stride" << std::endl;
+    std::cout << pool2.getParameters().stride << std::endl;
+    std::cout << std::endl << "Pooling Type" << std::endl;
+    std::cout << pool2.getParameters().pooling_type << std::endl;
+
+    std::cout << std::endl << "Parameter and Pooling Type Constructor:" << std::endl;
+    std::cout << std::endl << "Filter Size " << std::endl;
+    std::cout << pool3.getParameters().filter << std::endl;
+    std::cout << std::endl << "Stride" << std::endl;
+    std::cout << pool3.getParameters().stride << std::endl;
+    std::cout << std::endl << "Pooling Type" << std::endl;
+    std::cout << pool3.getParameters().pooling_type << std::endl;
+
+    //testing setters
+    std::cout << std::endl << "Testing Setters" << std::endl;
+
+    PoolingLayer pool4;    //create object
+    std::cout << "Before filter size: " << pool4.getParameters().filter << std::endl;
+    std::cout << "Before stride: " << pool4.getParameters().stride << std::endl;
+    std::cout << "Before pooling type: " << pool4.getParameters().pooling_type << std::endl;
+    pool4.setParameters({ 2, 3, "max" });
+    std::cout << "After filter size: " << pool4.getParameters().filter << std::endl;
+    std::cout << "After stride: " << pool4.getParameters().stride << std::endl;
+    std::cout << "After pooling type: " << pool4.getParameters().pooling_type << std::endl;
+
+    //testing pooling methods
+    std::cout << std::endl << "Testing Pooling Methods" << std::endl;
+
+    //create input and output matrix
+    Eigen::MatrixXd ip{ {1,2,3,4}, 
+                        {5,6,7,8},
+                        {9,10,11,12},
+                        {13,14,15,16}};
+    Eigen::MatrixXd op1, op2;
+    double op3, op4, op5;
+
+    std::cout << std::endl << "Test input matrix is" << std::endl << ip << std::endl;
+
+    PoolingLayer pool5;
+
+    op1 = pool5.avg_pool(ip,2,2);
+    std::cout << std::endl << "Average Pooling with a stride: 2 and filter: 2 " << std::endl << op1 << std::endl;
+
+    op2 = pool5.max_pool(ip, 2, 2);
+    std::cout << std::endl << "Max Pooling with a stride: 2 and filter: 2 " << std::endl << op2 << std::endl;
+
+    op3 = pool5.global_pool(ip, "max");
+    std::cout << std::endl << "Global Max Pooling " << std::endl << op3 << std::endl;
+
+    op4 = pool5.global_pool(ip, "avg");
+    std::cout << std::endl << "Global Average Pooling " << std::endl << op4 << std::endl;
+
+    op5 = pool5.global_pool(ip, "min");
+    std::cout << std::endl << "Global Min Pooling " << std::endl << op5 << std::endl;
+
+    //testing run()
+    std::cout << std::endl << "Testing Run" << std::endl;
+
+    PoolingLayer pool6;
+    Eigen::MatrixXd ip2{ {1,2,3,4},
+    						{5,6,7,8},
+    						{9,10,11,12},
+    						{13,14,15,16} };
+    Eigen::MatrixXd op6;
+
+    std::cout << std::endl << "Test input matrix is" << std::endl << ip2 << std::endl;
+    op6 = pool6.Run(ip2);
+    std::cout << std::endl << "Output matrix is" << std::endl << op6 << std::endl;
+    return;
+}
+
 
 //testing Neuralnetwork object
 void testNN()
@@ -230,11 +370,14 @@ void testNN()
     return;
 }
 
+
 int main() { //Neural Networking Testing 
     //testNN();
-    //testActivation();
+    testActivation();
     //testConvs();
-    testDeconv();
+    //testDeconv();
+    //testFC();
+    //testPool();
 
     std::cout << std::endl << "###########" << std::endl;
     std::cout << "END TESTING. ENTER ANYTHING TO EXIT" << std::endl;

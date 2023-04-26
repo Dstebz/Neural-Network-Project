@@ -31,7 +31,7 @@ Eigen::MatrixXd PoolingLayer::max_pool(Eigen::MatrixXd input, int filter, int st
 	int ip_width = input.rows();
 	int ip_height = input.cols();					
 
-	int output_rows = (ip_width - filter) / stride + 1;			
+	int output_rows = (ip_width - filter) / stride + 1;		
 	int output_cols = (ip_height - filter) / stride + 1;		
 
 	Eigen::MatrixXd output(output_rows, output_cols);			
