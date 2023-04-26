@@ -46,21 +46,15 @@ NeuralNetwork::~NeuralNetwork() {
 Eigen::MatrixXd NeuralNetwork::Run(Eigen::MatrixXd const input) {
 	//Runs the neural network
 	Eigen::MatrixXd runningOutput = input;
-	for (std::shared_ptr<BaseLayer> const layer : this->hiddenLayers) { //layer not edited, so const
-		try
-		{
-			runningOutput = layer->Run(runningOutput); //pass the result of each run to the next layer
-		}
-		catch (const std::exception&)
-		{
-			std::cout << "Error: Layer run failed" << std::endl;
-		}
-
+	auto  cascadeRun = [&runningOutput](std::shared_ptr<BaseLayer> const& layer) { //grab runningoutput from enclosing scope
+		runningOutput = layer->Run(runningOutput); // run layer, save output in runningOutput.
 	};
+	for_each(this->hiddenLayers.begin(), this->hiddenLayers.end(), cascadeRun); //for each layer, run the lambda function
+
 	return runningOutput;
 
-};
 
+};
 NN_Parameters NeuralNetwork::getParameters() {
 	//Returns the parameters of the neural network
 

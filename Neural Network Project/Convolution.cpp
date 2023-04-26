@@ -1,6 +1,6 @@
 #include "Convolution.h"
 #include <Eigen>
-#include <iostream>
+
 
 ConvolutionLayer::~ConvolutionLayer() {
 	//Destructor
@@ -47,9 +47,6 @@ Eigen::MatrixXd ConvolutionLayer::Run(Eigen::MatrixXd input) {
 		input.cols() //take input column dimension
 	) = input; //assign input into the padded matrix
 
-	std::cout << "Padded input: " << std::endl << paddedinput << std::endl;
-	std::cout << "Output Dimension: " << outputDimensionX << std::endl;
-	std::cout << "Kernel: " << std::endl << this->kernel << std::endl;
 
 	int scanLength = paddedinput.rows()-this->parameters.kernelSize+1; //length of scan
 	//std::cout << "ScanLength: " << scanLength << std::endl;

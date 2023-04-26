@@ -64,36 +64,36 @@ void testConvs()
     ConvolutionLayer conv1;
     C_Parameters params{ 1,2,3,4,5 };
     ConvolutionLayer conv2(params);
-	
+
     std::cout << "conv1 parameters: " << std::endl;
-    std::cout << "Stride" << conv1.getParameters().stride << std::endl;
-    std::cout << "Padding" << conv1.getParameters().padding << std::endl;
-    std::cout << "Kernel size" << conv1.getParameters().kernelSize << std::endl;
-	std::cout << "Expect: 1,1,3" << std::endl;
+    std::cout << "Stride: " << conv1.getParameters().stride << std::endl;
+    std::cout << "Padding: " << conv1.getParameters().padding << std::endl;
+    std::cout << "Kernel size: " << conv1.getParameters().kernelSize << std::endl;
+    std::cout << "Expect: 1,1,3" << std::endl << std::endl;
 
     std::cout << "conv2 parameters:" << std::endl;
-    std::cout << "Stride" << conv2.getParameters().stride << std::endl;
-    std::cout << "Padding" << conv2.getParameters().padding << std::endl;
-	std::cout << "Kernel size" << conv2.getParameters().kernelSize << std::endl;
-	std::cout << "Expect: 1,2,3" << std::endl;
+    std::cout << "Stride: " << conv2.getParameters().stride << std::endl;
+    std::cout << "Padding: " << conv2.getParameters().padding << std::endl;
+    std::cout << "Kernel size: " << conv2.getParameters().kernelSize << std::endl;
+    std::cout << "Expect: 1,2,3" << std::endl << std::endl;
 
-	std::cout << "Testing Convolution Kernel: " << std::endl;
-	ConvolutionLayer conv3;
-	std::cout << "Default Kernel: " << std::endl;
-	std::cout << conv3.getKernel() << std::endl;
-	std::cout << "Expect: 3x3 matrix of 1s" << std::endl;
+    std::cout << "Testing Convolution Kernel: " << std::endl;
+    ConvolutionLayer conv3;
+    std::cout << "Default Kernel: " << std::endl;
+    std::cout << conv3.getKernel() << std::endl;
+    std::cout << "Expect: 3x3 matrix of 1s" << std::endl << std::endl;
 
     Eigen::MatrixXd testKernel = Eigen::MatrixXd::Zero(3, 3);
-	testKernel <<
-				0, 0, 0,
-				0, 1, 0,
-				0, 0, 0; //Identity kernel, does not change input
+    testKernel <<
+        0, 0, 0,
+        0, 1, 0,
+        0, 0, 0; //Identity kernel, does not change input
 
     conv3.setKernel(testKernel);
 
     std::cout << "Test kernel: " << std::endl;
     std::cout << conv3.getKernel() << std::endl;
-    std::cout << "Expect 3x3, 0s on edge, 1 in centre" << std::endl;
+    std::cout << "Expect 3x3, 0s on edge, 1 in centre" << std::endl << std::endl;
 
     std::cout << "Testing Convolution Run():" << std::endl;
 
@@ -102,19 +102,29 @@ void testConvs()
     Eigen::MatrixXd convolved = conv3.Run(testInput);
 
     std::cout << convolved << std::endl;
-    std::cout << "Expect 4x4 of 2s" << std::endl;
+    std::cout << "Expect 4x4 of 2s" << std::endl << std::endl;
 
+	std::cout << "Blur kernel test: " << std::endl;
     Eigen::MatrixXd blurKernel = Eigen::MatrixXd::Constant(2, 2, 0.5);
     Eigen::MatrixXd blurTest = Eigen::MatrixXd::Zero(4, 4);
     blurTest << 0,2,0,2,
 				2,0,2,0,
 				0,2,0,2,
 				2,0,2,0;
-    
+
+	std::cout << "Kernel: " << std::endl;
+    std::cout << blurKernel << std::endl;
+	std::cout << "Expect 2x2 of 0.5s" << std::endl << std::endl;
+
+	std::cout << "Input: " << std::endl;
+	std::cout << blurTest << std::endl;
+	std::cout << "Expect 4x4 of 2s and 0s" << std::endl << std::endl;
+
 
     conv3.setKernel(blurKernel);
     conv3.setParameters({ 1,1,2,0,0 });
     convolved = conv3.Run(blurTest);
+	std::cout << "Output: " << std::endl;
     std::cout << convolved << std::endl;
 
     std::cout << "Expected: " << std::endl;
@@ -124,7 +134,8 @@ void testConvs()
 				1,2,2,2,1,
 				1,2,2,2,1,
 				1,1,1,1,0;
-    std::cout << expected << std::endl;
+    std::cout << expected << std::endl << std::endl;
+
     
     return;
 
@@ -178,14 +189,23 @@ void testDeconv()
 
     Eigen::MatrixXd newKernel = Eigen::MatrixXd::Constant(4, 4, 2.6);
     deconv4.setKernel(newKernel);
-    std::cout << std::endl << "After Kernel:" << std::endl;
+    std::cout << "After Kernel:" << std::endl;
     std::cout << deconv4.getKernel() << std::endl;
 
-    
+	//testing run
+    std::cout << std::endl << "Testing Run" << std::endl;
 
+	Eigen::MatrixXd testKernel = Eigen::MatrixXd::Constant(2, 2, 1);
+    DeconvolutionLayer deconv5({ 1,1,2,0,0 }, testKernel);
+	Eigen::MatrixXd testInput = Eigen::MatrixXd::Constant(4, 4, 2);
 
+	std::cout << "Input: " << std::endl;
+	std::cout << testInput << std::endl;
+	std::cout << std::endl << "Kernel: " << std::endl;
+	std::cout << testKernel << std::endl;
+	std::cout << "Output:" << std::endl;
+	std::cout << deconv5.Run(testInput) << std::endl;
 
-    
     return;
 };
 
@@ -365,24 +385,94 @@ void testNN()
 	nn.removeLayer(0); //removes first layer
 	std::cout << "Number of layers: (Expect 3)" << std::endl;
 	std::cout << nn.getLayers().size() << std::endl; //should be 3
+    std::list<std::shared_ptr<BaseLayer>> LayerList = nn.getLayers();
 
+    std::cout << std::endl << "Testing runs!" << std::endl;
+    NeuralNetwork nn2;
 
-    return;
+    std::cout << "Adding One Convolution layer" << std::endl;
+    ConvolutionLayer conv1({1,1,3,0,0});
+    Eigen::MatrixXd verticalFilter = Eigen::MatrixXd::Zero(3, 3);
+    verticalFilter << -1,-1,-1,
+					  -1,8,-1,
+					  -1,-1,-1;
+    conv1.setKernel(verticalFilter);
+    nn2.addLayer(std::make_shared<ConvolutionLayer>(conv1));
+
+    Eigen::MatrixXd input = Eigen::MatrixXd::Zero(5, 5);
+    input << 10,0,0,0,10,
+             10,10,0,0,10,
+			 10,0,10,0,10,
+			 10,0,0,10,10,
+			 10,0,0,0,10;
+
+    std::cout << "Kernel:" << std::endl;
+    std::cout << verticalFilter << std::endl;
+    std::cout << std::endl << "Input:" << std::endl;
+    std::cout << input << std::endl;
+
+    std::cout << std::endl << "NN output:" << std::endl;
+    std::cout << nn2.Run(input) << std::endl;
+
+    std::cout << std::endl << "Chaining" << std::endl;
+    std::cout << "Same Convolution -> RELU Activation -> avg Pooling" << std::endl;
+
+	ActivationLayer relu(reLU); //activation layer
+	PoolingLayer avgPool({3,2,"avg"}); //pooling layer
+
+	NeuralNetwork nn3; //new neural network
+    nn3.addLayer(std::make_shared<ConvolutionLayer>(conv1));
+	nn3.addLayer(std::make_shared<ActivationLayer>(relu));
+    std::cout << "Conv -> RELU only" << std::endl;
+    std::cout << nn3.Run(input) << std::endl;
+
+    nn3.addLayer(std::make_shared<PoolingLayer>(avgPool));
+	
+	std::cout << std::endl << "All 3 Chained NN output:" << std::endl;
+	std::cout << nn3.Run(input) << std::endl;
+    
+	return;
 }
 
 
 int main() { //Neural Networking Testing 
-    //testNN();
-    testActivation();
-    //testConvs();
-    //testDeconv();
-    //testFC();
-    //testPool();
-
-    std::cout << std::endl << "###########" << std::endl;
-    std::cout << "END TESTING. ENTER ANYTHING TO EXIT" << std::endl;
-    std::cout << std::endl << "###########" << std::endl;
-    char in;
-    std::cin >> in;
-    return 0;
+    
+    while(true)
+    {
+		std::cout << std::endl << "###########" << std::endl;
+		std::cout << "Enter a number to test a specific function" << std::endl;
+		std::cout << "1: Neural Network" << std::endl;
+		std::cout << "2: Activation Layer" << std::endl;
+		std::cout << "3: Convolution Layer" << std::endl;
+		std::cout << "4: Deconvolution Layer" << std::endl;
+		std::cout << "5: Pooling Layer" << std::endl;
+		std::cout << "6: Exit" << std::endl;
+		std::cout << std::endl << "###########" << std::endl;
+		int in;
+		std::cin >> in;
+		switch (in)
+		{
+		case 1:
+			testNN();
+			break;
+		case 2:
+			testActivation();
+			break;
+		case 3:
+			testConvs();
+			break;
+		case 4:
+			testDeconv();
+			break;
+		case 5:
+			//testPooling();
+			break;
+		case 6:
+			return 0; //break loop
+		default:
+			std::cout << "Invalid input" << std::endl;
+			break;
+		}
+    }
+    
 }

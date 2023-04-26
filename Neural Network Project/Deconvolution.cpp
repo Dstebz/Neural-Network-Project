@@ -1,6 +1,7 @@
 
 #include "Deconvolution.h"
 #include <Eigen>
+#include <iostream>
 
 DeconvolutionLayer::DeconvolutionLayer()
 {
@@ -35,33 +36,22 @@ void DeconvolutionLayer::setKernel(Eigen::MatrixXd kernel) {
 
 
 Eigen::MatrixXd DeconvolutionLayer::Run(Eigen::MatrixXd input) { //algorithms based off beyond data science article, see report for citation
-	int outputX = (input.rows() - 1) * this->parameters.stride + this->parameters.kernelSize - 2 * this->parameters.padding;
-	int outputY = outputX;
 
-	int paddedDimensions = (input.rows()*this->parameters.stride-1) + 2 * this->parameters.padding;
-	Eigen::MatrixXd paddedinput = Eigen::MatrixXd::Zero(paddedDimensions, paddedDimensions);
+	int strideDimensions = (input.rows() - 1) * this->parameters.stride; //dimensions of matrix after stride
+	int paddedDimensions = strideDimensions + 2 * this->parameters.padding; //dimensions of matrix after padding
+	Eigen::MatrixXd Output = Eigen::MatrixXd::Zero(paddedDimensions, paddedDimensions); //empty output matrix
+
 	for (int i = 0; i < input.rows(); i++) {
 		for (int j = 0; j < input.cols(); j++) {
-			paddedinput(i*this->parameters.stride + this->parameters.padding, j* this->parameters.stride + this->parameters.padding) = input(i, j);
+			Output.block(//iterate through input matrix and add to output matrix
+				i * this->parameters.stride,//start at 0,0. Increment in multiples of stride
+				j * this->parameters.stride,
+				this->parameters.kernelSize, //block has same dimensions as kernel
+				this->parameters.kernelSize
+			) += input(i, j) * this->kernel; //multiply input value by kernel and add to output matrix
 		}
 	}
-	Eigen::MatrixXd output = Eigen::MatrixXd::Zero(outputX, outputY);
-
-
-	//Regular convolution code below
-	int scanLength = paddedinput.rows() - this->parameters.kernelSize + 1; //length of scan
-	for (int i = 0; i < scanLength; i++) {
-		for (int j = 0; j < scanLength; j++) {
-			
-			output(i, j) = (paddedinput.block(i, //stride always 1 for deconvolution
-				j, //stride always 1 for deconvolution
-				this->parameters.kernelSize,
-				this->parameters.kernelSize) //take kernelSize x kernelSize block
-				.cwiseProduct(this->kernel)).sum(); //get sum of elementwise product
-		}
-	}
-	return output;
-
-
+	
+	return Output; //returns completed output matrix
 };
 

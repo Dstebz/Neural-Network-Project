@@ -5,7 +5,7 @@
 #include <Eigen>
 #include <functional>
 
-class ActivationLayer : BaseLayer
+class ActivationLayer : public BaseLayer
 {
 private:
 	std::function <Eigen::MatrixXd(Eigen::MatrixXd)> activationFunction; //generic function, takes in a matrix and returns a matrix
