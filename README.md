@@ -1,5 +1,6 @@
 # Neural-Network-Project
 
+This is an implementation of a neural network. It includes several hidden layer: convolution, deconvolution, pooling and fully connected. The matrix operations are implemented using the Eigen library, with only doubles being supported at present.
 
 
 
